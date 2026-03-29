@@ -1,0 +1,2 @@
+/* fallback stylesheet for extracted Alfa Led Ekran snapshot */
+html, body { background: #000; }

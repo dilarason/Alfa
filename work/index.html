@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <base href="/">
+    <link href="https://alfaledekran.com" rel="canonical">
+    <title>Alfa Led Ekran · Projeler</title>
+    <meta name="description" content="Alfa Led Ekran projeler sayfası. Konser, festival ve kurumsal etkinliklerdeki LED ekran uygulamalarımız.">
+    <meta property="og:url" content="https://alfaledekran.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alfa Led Ekran · Projeler">
+    <meta property="og:description" content="Alfa Led Ekran — Konser, festival ve kurumsal etkinliklerdeki LED ekran uygulamalarımız.">
+    <meta property="og:image" content="https://alfaledekran.com/assets/meta/social.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://alfaledekran.com">
+    <meta property="twitter:title" content="Alfa Led Ekran · Projeler">
+    <meta property="twitter:description" content="Alfa Led Ekran — Konser, festival ve kurumsal etkinliklerdeki LED ekran uygulamalarımız.">
+    <meta property="twitter:image" content="https://alfaledekran.com/assets/meta/social.jpg">
+    <meta name="apple-mobile-web-app-title" content="Alfa Led Ekran">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="assets/meta/manifest.json">
+    <link rel="mask-icon" href="assets/meta/safari-pinned-tab.svg" color="#333333">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#000000">
+    <style type="text/css">#Stage,body,html{margin:0;padding:0;width:100%;height:100%;overflow:hidden;-ms-content-zooming:none;-ms-touch-action:none;touch-action:none;background:#000}@font-face{font-family:"nbarchitekt";src:url(assets/fonts/NBArchitektStd-Regular-export/NBArchitektStd-Regular.woff2)format("woff2"),url(assets/fonts/NBArchitektStd-Regular-export/NBArchitektStd-Regular.woff)format("woff"),url(assets/fonts/NBArchitektStd-Regular-export/NBArchitektStd-Regular.otf)format("opentype");font-style:normal;font-weight:400}@font-face{font-family:"nbarchitekt";src:url(assets/fonts/NBArchitektStd-Light-export/NBArchitektStd-Light.woff2)format("woff2"),url(assets/fonts/NBArchitektStd-Light-export/NBArchitektStd-Light.woff)format("woff"),url(assets/fonts/NBArchitektStd-Light-export/NBArchitektStd-Light.otf)format("opentype");font-style:normal;font-weight:300}@font-face{font-family:"nbarchitekt";src:url(assets/fonts/NBArchitektStd-Bold-export/NBArchitektStd-Bold.woff2)format("woff2"),url(assets/fonts/NBArchitektStd-Bold-export/NBArchitektStd-Bold.woff)format("woff"),url(assets/fonts/NBArchitektStd-Bold-export/NBArchitektStd-Bold.otf)format("opentype");font-style:normal;font-weight:700}.ios,.ios #Stage,.ios body{overflow:visible}.ios,.mob{position:relative;height:100vh}.GLA11y{position:absolute;width:0;height:100%;clip:rect(0 0 0 0);overflow:hidden}:root{--baropacity:0.0}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:0 0}::-webkit-scrollbar-thumb{background:rgba(255,255,255,var(--baropacity, 0.9));border-radius:10px}#Stage,#Stage *{user-select:none;-moz-user-select:none;-webkit-user-select:none;-o-user-select:none;-ms-user-select:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:none}#Stage *,#Stage ::after,#Stage ::before{box-sizing:border-box}#Stage * input,#Stage * textarea{-moz-user-select:auto;-webkit-user-select:auto;-o-user-select:auto;-ms-user-select:auto;-webkit-tap-highlight-color:auto}.feature-detects{visibility:hidden;pointer-events:none;position:absolute;width:0;height:100vh;clip:rect(0 0 0 0)}@supports (--css:variables) and (padding:env(safe-area-inset-bottom)){.feature-detects{--safe-area-inset-top:env(safe-area-inset-top);--safe-area-inset-right:env(safe-area-inset-right);--safe-area-inset-bottom:env(safe-area-inset-bottom);--safe-area-inset-left:env(safe-area-inset-left)}}</style>
+    <style>
+        @keyframes ledFlicker {
+            0%, 18%, 20%, 62%, 64%, 100% { opacity: 1; }
+            19%, 63% { opacity: 0.92; }
+        }
+
+        @keyframes ledScan {
+            0% { transform: translateY(-105%); opacity: 0; }
+            10% { opacity: 0.24; }
+            50% { opacity: 0.18; }
+            90% { opacity: 0.24; }
+            100% { transform: translateY(105%); opacity: 0; }
+        }
+
+        .ChatDOM textarea,
+        .ChatDOM .flashing {
+            display: none !important;
+        }
+
+        .work-note {
+            position: fixed;
+            left: 24px;
+            bottom: 44px;
+            z-index: 6;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            max-width: min(520px, calc(100vw - 48px));
+            font-family: "nbarchitekt", monospace;
+            transition: opacity 320ms ease, transform 320ms ease;
+        }
+
+        .work-note-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(235, 255, 251, 0.9);
+            font-size: 16px;
+            line-height: 1;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow: 0 0 18px rgba(157, 252, 230, 0.16);
+        }
+
+        .work-note-title::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: rgba(157, 252, 230, 0.52);
+            box-shadow: 0 0 12px rgba(157, 252, 230, 0.24);
+        }
+
+        .work-note-copy {
+            color: rgba(235, 255, 251, 0.68);
+            font-size: 15px;
+            line-height: 1.7;
+            letter-spacing: 0.015em;
+            text-transform: none;
+            white-space: normal;
+            max-width: 38ch;
+            text-shadow: 0 0 14px rgba(157, 252, 230, 0.08);
+        }
+
+        .work-note-line {
+            display: block;
+            min-height: 1.4em;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        body.project-open .work-note,
+        body.contact-open .work-note {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        .contact-shell {
+            position: fixed;
+            inset: 0;
+            z-index: 7;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 280ms ease;
+        }
+
+        .contact-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 78% 22%, rgba(157, 252, 230, 0.08), transparent 22%),
+                linear-gradient(180deg, rgba(2, 6, 8, 0.2), rgba(2, 6, 8, 0.62));
+            opacity: 0;
+            transition: opacity 280ms ease;
+        }
+
+        body.contact-open .contact-shell {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        body.contact-open .contact-shell::before {
+            opacity: 1;
+        }
+
+        .contact-card {
+            position: absolute;
+            right: 24px;
+            top: 96px;
+            width: min(430px, calc(100vw - 48px));
+            padding: 22px 22px 20px;
+            border-radius: 26px;
+            border: 1px solid rgba(157, 252, 230, 0.16);
+            background:
+                linear-gradient(180deg, rgba(8, 15, 18, 0.92), rgba(3, 7, 9, 0.84));
+            box-shadow:
+                0 24px 80px rgba(0, 0, 0, 0.38),
+                0 0 48px rgba(157, 252, 230, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(18px);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: opacity 320ms ease, transform 320ms ease;
+        }
+
+        body.contact-open .contact-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(157, 252, 230, 0.84);
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .contact-kicker::before {
+            content: "";
+            width: 18px;
+            height: 1px;
+            background: currentColor;
+            box-shadow: 0 0 10px rgba(157, 252, 230, 0.24);
+        }
+
+        .contact-title {
+            margin: 10px 0 8px;
+            color: rgba(235, 255, 251, 0.94);
+            font-size: 26px;
+            line-height: 1.04;
+            letter-spacing: 0.01em;
+        }
+
+        .contact-lead {
+            margin: 0;
+            color: rgba(235, 255, 251, 0.66);
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 30ch;
+        }
+
+        .contact-close {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(157, 252, 230, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(235, 255, 251, 0.9);
+            font: inherit;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            transition: transform 180ms ease, border-color 180ms ease, opacity 180ms ease;
+        }
+
+        .contact-close:hover {
+            transform: scale(1.04);
+            border-color: rgba(157, 252, 230, 0.36);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-height: 86px;
+            padding: 14px 14px 13px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.035);
+            color: rgba(235, 255, 251, 0.88);
+            text-decoration: none;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(157, 252, 230, 0.28);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-label {
+            color: rgba(157, 252, 230, 0.8);
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            color: rgba(235, 255, 251, 0.92);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .contact-socials {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .contact-social {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            border-radius: 18px;
+            border: 1px solid rgba(134, 250, 231, 0.18);
+            background:
+                radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08), transparent 30%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+            color: rgba(235, 255, 251, 0.88);
+            text-decoration: none;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        }
+
+        .contact-social:hover {
+            transform: translateY(-2px);
+            border-color: rgba(157, 252, 230, 0.34);
+            box-shadow: 0 0 20px rgba(157, 252, 230, 0.18);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .contact-form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .contact-form-row--split {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .contact-input,
+        .contact-textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.035);
+            color: rgba(235, 255, 251, 0.92);
+            font: inherit;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 180ms ease, background 180ms ease;
+        }
+
+        .contact-input {
+            min-height: 48px;
+            padding: 0 14px;
+        }
+
+        .contact-textarea {
+            min-height: 112px;
+            padding: 14px;
+            resize: vertical;
+        }
+
+        .contact-input::placeholder,
+        .contact-textarea::placeholder {
+            color: rgba(235, 255, 251, 0.34);
+        }
+
+        .contact-input:focus,
+        .contact-textarea:focus {
+            border-color: rgba(157, 252, 230, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-submit {
+            min-height: 50px;
+            border: 1px solid rgba(157, 252, 230, 0.28);
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(157, 252, 230, 0.2), rgba(157, 252, 230, 0.08));
+            color: rgba(235, 255, 251, 0.92);
+            font: inherit;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-2px);
+            border-color: rgba(157, 252, 230, 0.42);
+        }
+
+        .contact-card {
+            left: 50%;
+            right: auto;
+            top: 48%;
+            width: min(840px, calc(100vw - 20px));
+            padding: 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            transform: translate(-50%, -50%) scale(0.96);
+        }
+
+        body.contact-open .contact-card {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .contact-stage {
+            position: relative;
+            min-height: min(650px, calc(100vh - 28px));
+        }
+
+        .contact-stage::before {
+            content: "ILETISIM.";
+            position: absolute;
+            left: 50%;
+            top: 47%;
+            transform: translate(-50%, -50%);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(204, 255, 246, 0.52);
+            font-size: clamp(132px, 21vw, 292px);
+            line-height: 0.9;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.98;
+            text-shadow:
+                0 0 18px rgba(124, 248, 226, 0.18),
+                0 0 42px rgba(124, 248, 226, 0.14),
+                0 0 86px rgba(225, 255, 92, 0.1);
+            animation: ledFlicker 7s linear infinite;
+        }
+
+        .contact-stage::after {
+            content: "ILETISIM.";
+            position: absolute;
+            left: 50%;
+            top: 47%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(132px, 21vw, 292px);
+            line-height: 0.9;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            color: transparent;
+            background:
+                linear-gradient(90deg, rgba(129, 248, 227, 0.48), rgba(232, 255, 124, 0.34)),
+                radial-gradient(circle at 1px 1px, rgba(208, 255, 248, 0.44) 0.9px, transparent 1.2px);
+            background-size: auto, 8px 8px;
+            -webkit-background-clip: text;
+            background-clip: text;
+            opacity: 0.22;
+            filter:
+                drop-shadow(0 0 14px rgba(129, 248, 227, 0.22))
+                drop-shadow(0 0 28px rgba(225, 255, 92, 0.1));
+            animation: ledFlicker 5.5s linear infinite;
+        }
+
+        .contact-stack {
+            position: relative;
+            width: min(700px, calc(100vw - 60px));
+            height: 560px;
+            margin: 0 auto;
+            z-index: 1;
+            perspective: 1800px;
+        }
+
+        .contact-panel {
+            position: absolute;
+            inset: auto 0 auto 0;
+            padding: 18px 20px 16px;
+            border-radius: 28px;
+            background:
+                linear-gradient(180deg, rgba(8, 14, 18, 0.95), rgba(4, 8, 10, 0.92));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow:
+                0 22px 80px rgba(0, 0, 0, 0.42),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+            animation: ledFlicker 8.5s linear infinite;
+        }
+
+        .contact-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 24%),
+                radial-gradient(circle at 22% 12%, rgba(255, 255, 255, 0.08), transparent 30%),
+                radial-gradient(circle at 1px 1px, rgba(166, 255, 239, 0.08) 0.9px, transparent 1.2px),
+                repeating-linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.02) 0,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 6px
+                );
+            background-size: auto, auto, 12px 12px, auto;
+            opacity: 0.72;
+            pointer-events: none;
+        }
+
+        .contact-panel::after {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .contact-panel-scan {
+            position: absolute;
+            inset: -20% 0;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(180deg, transparent 0%, rgba(190, 255, 244, 0.04) 44%, rgba(225, 255, 92, 0.12) 50%, rgba(190, 255, 244, 0.04) 56%, transparent 100%);
+            mix-blend-mode: screen;
+            opacity: 0;
+            animation: ledScan 6.8s linear infinite;
+        }
+
+        .contact-panel--cyan {
+            top: 26px;
+            transform: translateX(-46px) rotate(-5deg);
+            border-color: rgba(142, 255, 244, 0.62);
+            background:
+                radial-gradient(circle at 20% 22%, rgba(118, 255, 240, 0.28), transparent 30%),
+                radial-gradient(circle at 80% 76%, rgba(88, 238, 255, 0.12), transparent 24%),
+                linear-gradient(180deg, rgba(8, 22, 24, 0.97), rgba(4, 11, 14, 0.94));
+            box-shadow:
+                0 18px 70px rgba(0, 0, 0, 0.38),
+                0 0 52px rgba(127, 223, 214, 0.22);
+        }
+
+        .contact-panel--front {
+            top: 86px;
+            z-index: 3;
+            border-color: rgba(133, 249, 227, 0.22);
+            background:
+                radial-gradient(circle at 76% 14%, rgba(133, 249, 227, 0.12), transparent 28%),
+                linear-gradient(180deg, rgba(8, 15, 18, 0.96), rgba(4, 8, 10, 0.94));
+            box-shadow:
+                0 24px 90px rgba(0, 0, 0, 0.48),
+                0 0 42px rgba(111, 234, 215, 0.12);
+        }
+
+        .contact-panel--lime {
+            top: 336px;
+            transform: translateX(44px) rotate(4deg);
+            border-color: rgba(236, 255, 92, 0.72);
+            background:
+                radial-gradient(circle at 80% 20%, rgba(242, 255, 110, 0.34), transparent 30%),
+                radial-gradient(circle at 24% 70%, rgba(173, 255, 96, 0.22), transparent 26%),
+                linear-gradient(180deg, rgba(22, 28, 6, 0.98), rgba(12, 16, 4, 0.94));
+            box-shadow:
+                0 18px 70px rgba(0, 0, 0, 0.38),
+                0 0 58px rgba(225, 255, 92, 0.28);
+        }
+
+        .contact-stack:hover .contact-panel--cyan {
+            transform: translateX(-52px) translateY(-10px) rotate(-8deg) translateZ(28px);
+        }
+
+        .contact-stack:hover .contact-panel--front {
+            transform: translateY(-10px) translateZ(40px);
+            border-color: rgba(143, 255, 236, 0.34);
+            box-shadow:
+                0 28px 110px rgba(0, 0, 0, 0.52),
+                0 0 56px rgba(111, 234, 215, 0.18);
+        }
+
+        .contact-stack:hover .contact-panel--lime {
+            transform: translateX(52px) translateY(14px) rotate(7deg) translateZ(24px);
+        }
+
+        .contact-panel:hover {
+            box-shadow:
+                0 30px 110px rgba(0, 0, 0, 0.54),
+                0 0 54px rgba(143, 255, 236, 0.16);
+        }
+
+        .contact-panel-tag,
+        .contact-panel-copy,
+        .contact-panel-meta,
+        .contact-panel-title {
+            position: relative;
+            z-index: 1;
+            transition: transform 260ms ease, text-shadow 260ms ease, opacity 260ms ease;
+            transform: translateZ(0);
+        }
+
+        .contact-panel-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 20px;
+            padding: 0 8px;
+            border-radius: 999px;
+            border: 1px solid currentColor;
+            color: rgba(235, 255, 251, 0.72);
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .contact-panel--cyan .contact-panel-tag {
+            color: rgba(127, 223, 214, 0.92);
+        }
+
+        .contact-panel--lime .contact-panel-tag {
+            color: rgba(232, 255, 124, 0.96);
+        }
+
+        .contact-panel-title {
+            margin: 8px 0 6px;
+            color: rgba(235, 255, 251, 0.94);
+            font-size: 44px;
+            line-height: 0.88;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            text-shadow: 0 0 0 rgba(157, 252, 230, 0);
+        }
+
+        .contact-panel--cyan .contact-panel-title {
+            color: rgba(214, 255, 251, 0.92);
+        }
+
+        .contact-panel--lime .contact-panel-title {
+            color: rgba(236, 255, 148, 0.98);
+        }
+
+        .contact-panel-copy {
+            margin: 0;
+            color: rgba(235, 255, 251, 0.62);
+            font-size: 13px;
+            line-height: 1.38;
+            max-width: 34ch;
+        }
+
+        .contact-panel:hover .contact-panel-title {
+            transform: translateZ(32px) translateY(-1px);
+            text-shadow: 0 0 26px rgba(157, 252, 230, 0.18);
+        }
+
+        .contact-panel:hover .contact-panel-copy,
+        .contact-panel:hover .contact-panel-meta,
+        .contact-panel:hover .contact-panel-tag {
+            transform: translateZ(18px);
+        }
+
+        .contact-panel-meta {
+            margin-top: 10px;
+            color: rgba(235, 255, 251, 0.86);
+            font-size: 11px;
+            line-height: 1.45;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .contact-social {
+            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+            text-shadow: none;
+            min-height: 40px;
+            border-radius: 15px;
+            padding: 0;
+        }
+
+        .contact-social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .contact-social:hover {
+            transform: translateY(-3px) translateZ(18px);
+            border-color: rgba(157, 252, 230, 0.42);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 0 20px rgba(157, 252, 230, 0.18);
+            filter: drop-shadow(0 0 14px rgba(157, 252, 230, 0.24));
+        }
+
+        .contact-form {
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+            gap: 10px;
+            width: min(100%, 560px);
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .contact-socials {
+            position: relative;
+            z-index: 1;
+            margin-top: 8px;
+            margin-bottom: 0;
+            gap: 8px;
+            width: min(100%, 460px);
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .contact-form-row {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: 1fr;
+        }
+
+        .contact-form-row--split {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+        }
+
+        .contact-form-row--names {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .contact-form-row--contact {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .contact-input,
+        .contact-textarea {
+            border-color: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            font-size: 14px;
+        }
+
+        .contact-input {
+            min-height: 44px;
+            padding: 0 14px;
+            min-width: 0;
+        }
+
+        .contact-textarea {
+            min-height: 94px;
+            padding: 13px 14px;
+        }
+
+        .contact-submit {
+            background: linear-gradient(180deg, rgba(157, 252, 230, 0.18), rgba(157, 252, 230, 0.06));
+            box-shadow: 0 0 0 1px rgba(157, 252, 230, 0.06), 0 12px 26px rgba(0, 0, 0, 0.16);
+            min-height: 44px;
+            font-size: 11px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-close {
+            position: absolute;
+            top: 14px;
+            right: 8px;
+            z-index: 5;
+        }
+
+        .ChatDOM .wrapper {
+            width: min(520px, 100%) !important;
+            height: calc(100% - 120px) !important;
+            padding: 2.5rem 2.5rem !important;
+        }
+
+        .ChatDOM .messages {
+            margin-bottom: 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            .work-note {
+                left: 16px;
+                right: 16px;
+                bottom: 22px;
+                max-width: none;
+            }
+
+            .work-note-title {
+                font-size: 13px;
+                letter-spacing: 0.16em;
+            }
+
+            .work-note-copy {
+                font-size: 13px;
+                line-height: 1.55;
+                max-width: none;
+            }
+
+            .contact-card {
+                top: 44%;
+                width: min(calc(100vw - 10px), 440px);
+            }
+
+            .contact-stage {
+                min-height: 600px;
+            }
+
+            .contact-stage::before {
+                font-size: clamp(98px, 30vw, 176px);
+                top: 37%;
+            }
+
+            .contact-stage::after {
+                font-size: clamp(98px, 30vw, 176px);
+                top: 37%;
+            }
+
+            .contact-stack {
+                width: min(366px, calc(100vw - 28px));
+                height: 520px;
+            }
+
+            .contact-panel {
+                padding: 16px 16px 14px;
+                border-radius: 24px;
+            }
+
+            .contact-panel--cyan {
+                top: 12px;
+                transform: translateX(-10px) rotate(-4deg);
+            }
+
+            .contact-panel--front {
+                top: 60px;
+            }
+
+            .contact-panel--lime {
+                top: 318px;
+                transform: translateX(12px) rotate(4deg);
+            }
+
+            .contact-panel-title {
+                font-size: 30px;
+            }
+
+            .contact-socials {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+            .contact-form-row,
+            .contact-form-row--split,
+            .contact-form-row--names,
+            .contact-form-row--contact {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-panel-copy {
+                max-width: none;
+            }
+
+            .contact-input {
+                min-height: 42px;
+            }
+
+            .contact-textarea {
+                min-height: 78px;
+            }
+
+            .contact-submit {
+                min-height: 44px;
+            }
+
+            .contact-social {
+                min-height: 40px;
+                font-size: 10px;
+                letter-spacing: 0.12em;
+            }
+
+            .ChatDOM .wrapper {
+                padding: 1.6rem 1.4rem !important;
+                width: min(100vw, 460px) !important;
+            }
+        }
+    </style>
+    <script>
+        !function() {
+            window._ENV_ = "production";
+            window._CMS_ = "assets/cms";
+            window._UNSUPPORTED_PAGE_ = "unsupported.html";
+            try {
+                eval("let obj = {}; obj?.prop");
+            } catch (e) {
+                window.location.replace(window._UNSUPPORTED_PAGE_);
+                return;
+            }
+            window.UIL_STATIC_PATH = "assets/data/uil.1774771800000.json";
+            const translateStageLabels = () => {
+                document.querySelectorAll(".NavigationUI a").forEach(anchor => {
+                    const label = (anchor.getAttribute("aria-label") || "").toLowerCase();
+                    if (label === "work") {
+                        anchor.textContent = "Projeler";
+                        anchor.setAttribute("aria-label", "Projeler");
+                    }
+                    if (label === "contact") {
+                        anchor.textContent = "Iletisim";
+                        anchor.setAttribute("aria-label", "Iletisim");
+                    }
+                });
+            };
+            const normalizeWorkUrl = input => {
+                try {
+                    const url = new URL(input == null ? location.href : String(input), location.origin);
+                    if (/^\/work\/.+/.test(url.pathname)) url.pathname = "/work/";
+                    return url.pathname + url.search + url.hash;
+                } catch (err) {
+                    return input;
+                }
+            };
+            const originalPushState = history.pushState.bind(history);
+            const originalReplaceState = history.replaceState.bind(history);
+            history.pushState = function(state, title, url) {
+                return originalPushState(state, title, normalizeWorkUrl(url));
+            };
+            history.replaceState = function(state, title, url) {
+                return originalReplaceState(state, title, normalizeWorkUrl(url));
+            };
+            document.addEventListener("click", event => {
+                const anchor = event.target && event.target.closest ? event.target.closest("a") : null;
+                if (!anchor) return;
+                const href = anchor.getAttribute("href") || "";
+                if (href.includes("/work/")) {
+                    event.preventDefault();
+                    history.replaceState(history.state, "", "/work/");
+                }
+            }, true);
+            history.replaceState(history.state, "", "/work/");
+            const observer = new MutationObserver(translateStageLabels);
+            observer.observe(document.documentElement, {
+                childList: true,
+                subtree: true
+            });
+            const loadScene = () => {
+                var s = "scene3-assets/js/app.scene3.9.js",
+                    h = document.head,
+                    e = document.createElement("link");
+                e.href = s;
+                e.rel = "preload";
+                e.as = "script";
+                h.appendChild(e);
+                e = document.createElement("script");
+                e.src = s;
+                e.async = !0;
+                h.appendChild(e);
+            };
+            loadScene();
+            setTimeout(function forceLoaderClose() {
+                try {
+                    if (window.Events && typeof window.Events.broadcast === "function") {
+                        window.Events.broadcast("Global/loadFinished");
+                    }
+                    if (window.AppState && typeof window.AppState.set === "function") {
+                        window.AppState.set("Global/loadFinished", !0);
+                    }
+                } catch (err) {}
+                var loader = document.querySelector(".LoaderView");
+                if (loader) {
+                    loader.style.opacity = "0";
+                    loader.style.pointerEvents = "none";
+                    setTimeout(function() {
+                        loader.style.display = "none";
+                    }, 400);
+                }
+                document.documentElement.style.setProperty("--baropacity", "0.9");
+                translateStageLabels();
+            }, 5000);
+        }();
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7TMDT4F8N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J7TMDT4F8N');
+    </script>
+</head>
+<body>
+    <noscript><p style="background: black; color: white; font-size: 20px; display: inline; font-family: Helvetica, Arial, sans-serif; padding: 10px;">Please enable javascript</p></noscript>
+    <div class="work-note">
+        <div class="work-note-title js-scramble" data-text="Yakinda Hizmetinizdeyiz">Yakinda Hizmetinizdeyiz</div>
+        <div class="work-note-copy">
+            <span class="work-note-line js-scramble" data-text="Projelerimizi inceleyebilir,">Projelerimizi inceleyebilir,</span>
+            <span class="work-note-line js-scramble" data-text="detayli bilgi almak icin">detayli bilgi almak icin</span>
+            <span class="work-note-line js-scramble" data-text="bizimle iletisime gecebilirsiniz.">bizimle iletisime gecebilirsiniz.</span>
+        </div>
+    </div>
+    <div class="contact-shell" id="contact-shell" aria-hidden="true">
+        <div class="contact-card" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+            <div class="contact-stage">
+                <button class="contact-close" id="contact-close" type="button" aria-label="Iletisim panelini kapat">×</button>
+                <div class="contact-stack">
+                    <section class="contact-panel contact-panel--cyan" aria-hidden="true">
+                        <div class="contact-panel-scan" aria-hidden="true"></div>
+                        <div class="contact-panel-tag">Phase 01</div>
+                        <div class="contact-panel-title">Proje<br>Brifi</div>
+                        <p class="contact-panel-copy">Kisa brief, tarih ve teknik ihtiyaclarinizi iletin. Ekibimiz sizinle hizlica temasa gecsin.</p>
+                        <div class="contact-panel-meta">info@alfaledekran.com</div>
+                    </section>
+
+                    <section class="contact-panel contact-panel--front">
+                        <div class="contact-panel-scan" aria-hidden="true"></div>
+                        <div class="contact-panel-tag">Phase 02</div>
+                        <h2 class="contact-panel-title" id="contact-title">Bize<br>Ulasin</h2>
+                        <p class="contact-panel-copy">Formu birakin, sosyal kanallardan yazin ya da dogrudan arayin. Donus icin acigiz.</p>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="contact-form-row contact-form-row--names">
+                                <input class="contact-input" id="contact-first-name" name="first_name" type="text" placeholder="Ad" required>
+                                <input class="contact-input" id="contact-last-name" name="last_name" type="text" placeholder="Soyad" required>
+                            </div>
+                            <div class="contact-form-row contact-form-row--contact">
+                                <input class="contact-input" id="contact-email" name="email" type="email" placeholder="E-posta" required>
+                                <input class="contact-input" id="contact-phone" name="phone" type="tel" placeholder="Telefon">
+                            </div>
+                            <textarea class="contact-textarea" id="contact-message" name="message" placeholder="Projenizi kisaca anlatin" required></textarea>
+                            <button class="contact-submit" type="submit">Formu Gonder</button>
+                        </form>
+
+                        <div class="contact-socials">
+                            <a class="contact-social" href="https://www.instagram.com/alfaledsatis?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            <a class="contact-social" href="https://www.linkedin.com/in/turan-alfa-led-4b8a51ab" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 1 0 5.3 7.03 2.02 2.02 0 0 0 5.25 3Zm4.13 5.5V20h3.38v-6.03c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20H20V13.4c0-3.24-.7-5.73-4.49-5.73-1.82 0-3.04 1-3.54 1.95h-.05V8.5H9.38Z"/></svg>
+                                <span class="sr-only">LinkedIn</span>
+                            </a>
+                            <a class="contact-social" href="https://wa.me/905411871408" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.52 2 2.05 6.46 2.05 11.98c0 1.77.47 3.5 1.35 5.02L2 22l5.14-1.35a9.93 9.93 0 0 0 4.9 1.25h.01c5.51 0 9.98-4.47 9.98-9.99A9.96 9.96 0 0 0 12.04 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.05.8.81-2.98-.2-.31a8.18 8.18 0 0 1-1.26-4.4 8.22 8.22 0 1 1 8.18 8.21Zm4.5-6.14c-.25-.12-1.48-.73-1.71-.82-.22-.08-.39-.12-.56.13-.16.24-.64.82-.78.99-.14.16-.28.18-.53.06-.25-.12-1.04-.38-1.98-1.2-.73-.66-1.23-1.46-1.37-1.7-.14-.24-.01-.37.1-.49.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.09 3.61.57.25 1.02.4 1.37.51.58.18 1.1.16 1.52.1.46-.07 1.48-.6 1.69-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+                                <span class="sr-only">WhatsApp</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="contact-panel contact-panel--lime" aria-hidden="true">
+                        <div class="contact-panel-scan" aria-hidden="true"></div>
+                        <div class="contact-panel-tag">Phase 03</div>
+                        <div class="contact-panel-title">Hizli<br>Baglanti</div>
+                        <p class="contact-panel-copy">Telefon ve WhatsApp uzerinden ayni gun icinde geri donus saglayabiliriz.</p>
+                        <div class="contact-panel-meta">+90 541 187 14 08</div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        !function() {
+            const chars = "&/+%#*0123456789";
+            const stagger = 240;
+
+            function scramble(element, delay) {
+                const target = element.dataset.text || element.textContent || "";
+                let frame = 0;
+                const revealStep = 1 / Math.max(target.length * 2.4, 18);
+
+                setTimeout(() => {
+                    const timer = setInterval(() => {
+                        let output = "";
+                        const progress = Math.min(1, frame * revealStep);
+                        const revealed = Math.floor(target.length * progress);
+
+                        for (let i = 0; i < target.length; i++) {
+                            const ch = target[i];
+                            if (ch === " ") {
+                                output += " ";
+                            } else if (i < revealed) {
+                                output += ch;
+                            } else {
+                                output += chars[Math.floor(Math.random() * chars.length)];
+                            }
+                        }
+
+                        element.textContent = output;
+                        frame += 1;
+
+                        if (revealed >= target.length) {
+                            clearInterval(timer);
+                            element.textContent = target;
+                        }
+                    }, 42);
+                }, delay);
+            }
+
+            function runScramble() {
+                document.querySelectorAll(".js-scramble").forEach((element, index) => {
+                    scramble(element, index * stagger);
+                });
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", runScramble, { once: true });
+            } else {
+                runScramble();
+            }
+        }();
+    </script>
+    <script>
+        !function() {
+            const body = document.body;
+            const contactShell = document.getElementById("contact-shell");
+            const closeButton = document.getElementById("contact-close");
+            const contactForm = document.getElementById("contact-form");
+
+            function isVisible(element) {
+                if (!element) return false;
+                const style = window.getComputedStyle(element);
+                if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
+                const rect = element.getBoundingClientRect();
+                return rect.width > 12 && rect.height > 12;
+            }
+
+            function getAppState() {
+                return window.AppState && typeof window.AppState.get === "function" && typeof window.AppState.set === "function" ? window.AppState : null;
+            }
+
+            function setContact(open) {
+                const state = getAppState();
+                if (state) state.set("ViewController/contact", !!open);
+            }
+
+            function updateUi() {
+                const state = getAppState();
+                const projectOpen = !!state?.get("Work/project") || isVisible(document.querySelector(".ChatDOM .wrapper"));
+                const contactOpen = !!state?.get("ViewController/contact");
+                body.classList.toggle("project-open", projectOpen);
+                body.classList.toggle("contact-open", contactOpen);
+                contactShell?.setAttribute("aria-hidden", contactOpen ? "false" : "true");
+            }
+
+            document.addEventListener("click", event => {
+                const navLink = event.target && event.target.closest ? event.target.closest('.NavigationUI a[aria-label="Iletisim"], .NavigationUI a[aria-label="Contact"]') : null;
+                if (navLink) {
+                    event.preventDefault();
+                    setContact(true);
+                }
+            }, true);
+
+            closeButton?.addEventListener("click", () => setContact(false));
+
+            contactShell?.addEventListener("click", event => {
+                if (event.target === contactShell) setContact(false);
+            });
+
+            contactForm?.addEventListener("submit", event => {
+                event.preventDefault();
+                const firstName = document.getElementById("contact-first-name")?.value?.trim() || "";
+                const lastName = document.getElementById("contact-last-name")?.value?.trim() || "";
+                const name = [firstName, lastName].filter(Boolean).join(" ");
+                const email = document.getElementById("contact-email")?.value?.trim() || "";
+                const phone = document.getElementById("contact-phone")?.value?.trim() || "";
+                const message = document.getElementById("contact-message")?.value?.trim() || "";
+                const subject = encodeURIComponent(`ALFA LED talebi - ${name || "Yeni proje"}`);
+                const bodyText = encodeURIComponent(
+                    `Ad Soyad: ${name}\nE-posta: ${email}\nTelefon: ${phone}\n\nProje Detayi:\n${message}`
+                );
+                window.location.href = `mailto:info@alfaledekran.com?subject=${subject}&body=${bodyText}`;
+            });
+
+            updateUi();
+            setInterval(updateUi, 160);
+        }();
+    </script>
+</body>
+</html>
