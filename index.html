@@ -297,6 +297,88 @@
         grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 520px) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .page {
+        min-height: 100dvh;
+        padding: 14px;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .nav-pill {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+      }
+
+      .nav-pill a {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+      }
+
+      .nav-pill span {
+        width: 18px;
+      }
+
+      .hero {
+        padding: 22px 0 34px;
+      }
+
+      .panel {
+        width: calc(100vw - 28px);
+        padding: 22px 18px 20px;
+        border-radius: 20px;
+      }
+
+      .panel::before,
+      .panel::after {
+        width: 56px;
+        height: 56px;
+      }
+
+      h1 {
+        margin: 14px 0 12px;
+        font-size: clamp(26px, 10.5vw, 42px);
+        max-width: none;
+        line-height: 1.02;
+        letter-spacing: -0.015em;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 1.58;
+      }
+
+      .meta-card span {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .actions {
+        gap: 10px;
+      }
+
+      .button {
+        width: 100%;
+        min-width: 0;
+        padding: 14px 18px;
+      }
+
+      .meta {
+        margin-top: 24px;
+      }
+    }
   </style>
 </head>
 <body>

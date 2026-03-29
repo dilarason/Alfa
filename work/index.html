@@ -761,74 +761,100 @@
         }
 
         @media (max-width: 768px) {
+            .NavigationUI {
+                transform: scale(0.9);
+                transform-origin: top right;
+            }
+
+            .NavigationUI a {
+                letter-spacing: 0.12em !important;
+            }
+
             .work-note {
                 left: 16px;
                 right: 16px;
-                bottom: 22px;
+                bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px));
                 max-width: none;
+                gap: 10px;
             }
 
             .work-note-title {
-                font-size: 13px;
+                font-size: 12px;
                 letter-spacing: 0.16em;
+                line-height: 1.35;
+                white-space: normal;
             }
 
             .work-note-copy {
-                font-size: 13px;
+                font-size: 12px;
                 line-height: 1.55;
                 max-width: none;
             }
 
+            .contact-shell {
+                padding:
+                    max(12px, env(safe-area-inset-top))
+                    max(12px, env(safe-area-inset-right))
+                    max(12px, env(safe-area-inset-bottom))
+                    max(12px, env(safe-area-inset-left));
+                overflow-y: auto;
+                overscroll-behavior: contain;
+            }
+
             .contact-card {
-                top: 44%;
-                width: min(calc(100vw - 10px), 440px);
+                top: 50%;
+                width: min(calc(100vw - 24px), 430px);
+                max-width: 430px;
             }
 
             .contact-stage {
-                min-height: 600px;
+                min-height: auto;
+                height: min(560px, calc(100dvh - 24px));
             }
 
             .contact-stage::before {
-                font-size: clamp(98px, 30vw, 176px);
-                top: 37%;
+                font-size: clamp(84px, 26vw, 156px);
+                top: 35%;
             }
 
             .contact-stage::after {
-                font-size: clamp(98px, 30vw, 176px);
-                top: 37%;
+                font-size: clamp(84px, 26vw, 156px);
+                top: 35%;
             }
 
             .contact-stack {
-                width: min(366px, calc(100vw - 28px));
-                height: 520px;
+                width: min(100%, 360px);
+                height: min(500px, calc(100dvh - 140px));
+                min-height: 500px;
             }
 
             .contact-panel {
-                padding: 16px 16px 14px;
-                border-radius: 24px;
+                padding: 14px 14px 13px;
+                border-radius: 22px;
             }
 
             .contact-panel--cyan {
-                top: 12px;
-                transform: translateX(-10px) rotate(-4deg);
+                top: 10px;
+                transform: translateX(-12px) rotate(-4deg);
             }
 
             .contact-panel--front {
-                top: 60px;
+                top: 56px;
             }
 
             .contact-panel--lime {
-                top: 318px;
-                transform: translateX(12px) rotate(4deg);
+                top: auto;
+                bottom: 0;
+                transform: translateX(10px) rotate(4deg);
             }
 
             .contact-panel-title {
-                font-size: 30px;
+                font-size: 28px;
             }
 
             .contact-socials {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 8px;
+                width: 100%;
             }
 
             .contact-form-row,
@@ -843,26 +869,82 @@
             }
 
             .contact-input {
-                min-height: 42px;
+                min-height: 46px;
+                font-size: 15px;
             }
 
             .contact-textarea {
-                min-height: 78px;
+                min-height: 92px;
+                font-size: 15px;
             }
 
             .contact-submit {
-                min-height: 44px;
+                min-height: 46px;
+                font-size: 10px;
+                letter-spacing: 0.16em;
             }
 
             .contact-social {
-                min-height: 40px;
-                font-size: 10px;
-                letter-spacing: 0.12em;
+                min-height: 44px;
             }
 
             .ChatDOM .wrapper {
-                padding: 1.6rem 1.4rem !important;
-                width: min(100vw, 460px) !important;
+                padding: 1.15rem 1rem !important;
+                width: calc(100vw - 20px) !important;
+                height: calc(100% - 86px) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .NavigationUI {
+                transform: scale(0.82);
+            }
+
+            .work-note {
+                left: 14px;
+                right: 14px;
+            }
+
+            .work-note-title::before {
+                width: 22px;
+            }
+
+            .contact-card {
+                width: calc(100vw - 16px);
+            }
+
+            .contact-stage {
+                height: min(520px, calc(100dvh - 16px));
+            }
+
+            .contact-stage::before,
+            .contact-stage::after {
+                top: 32%;
+                font-size: clamp(72px, 24vw, 128px);
+            }
+
+            .contact-stack {
+                width: calc(100vw - 28px);
+                height: min(470px, calc(100dvh - 124px));
+                min-height: 470px;
+            }
+
+            .contact-panel-title {
+                font-size: 24px;
+            }
+
+            .contact-panel-copy {
+                max-width: none;
+                font-size: 11px;
+            }
+
+            .contact-panel-meta {
+                font-size: 10px;
+            }
+
+            .contact-input,
+            .contact-textarea {
+                font-size: 14px;
             }
         }
     </style>
