@@ -44308,8 +44308,8 @@ SkinAnimation.tempPos = new Vector3, SkinAnimation.tempRot = new Quaternion, Ski
         })), _this.layers.title.originTransform = Utils3D.cloneTransform(_this.layers.title), _this.layers.date.originTransform = Utils3D.cloneTransform(_this.layers.date), _this.layers.video.originTransform = Utils3D.cloneTransform(_this.layers.video), _this.onResize((_ => {
             let mobilePortrait = Device.mobile && Stage.height > Stage.width;
             if (mobilePortrait) {
-                let vscale = Math.map(Stage.width, 360, 820, .72, .92, !0);
-                _this.layers.title.group.scale.set(.62, .62, 1), _this.layers.date.group.scale.copy(_this.layers.date.originTransform.scale), _this.layers.date.group.scale.multiplyScalar(.78), _this.layers.video.scale.copy(_this.layers.video.originTransform.scale), _this.layers.video.scale.x *= vscale, _this.layers.video.scale.y *= vscale, _this.layers.video.position.y = .18, _this.layers.title.group.position.set(0, .28, 2), _this.layers.date.group.position.set(.68, 1.04, 1.5)
+                let vscale = Math.map(Stage.width, 360, 820, .7, .9, !0);
+                _this.layers.title.group.scale.set(.6, .6, 1), _this.layers.date.group.scale.copy(_this.layers.date.originTransform.scale), _this.layers.date.group.scale.multiplyScalar(.76), _this.layers.video.scale.copy(_this.layers.video.originTransform.scale), _this.layers.video.scale.x *= vscale, _this.layers.video.scale.y *= vscale, _this.layers.video.position.y = .16, _this.layers.title.group.position.set(0, .25, 2), _this.layers.date.group.position.set(.64, 1, 1.5)
             } else _this.layers.title.group.scale.copy(_this.layers.title.originTransform.scale), _this.layers.date.group.scale.copy(_this.layers.date.originTransform.scale), _this.layers.video.scale.copy(_this.layers.video.originTransform.scale), _this.layers.title.group.position.copy(_this.layers.title.originTransform.position), _this.layers.date.group.position.copy(_this.layers.date.originTransform.position)
         }));
         for (let key in _this)
@@ -44367,7 +44367,7 @@ SkinAnimation.tempPos = new Vector3, SkinAnimation.tempRot = new Quaternion, Ski
         let ui = (await _this.get("Work/pane_ui")).clone(),
             ui_shader = ui.shader.clone();
         async function updateLayout() {
-            Device.mobile && Stage.height > Stage.width ? (mesh.scale.x = 2.18, mesh.scale.y = 2.02, mesh.shader.uniforms.uScale.value.x = 1.34, mesh.shader.uniforms.uScale.value.y = .88) : (mesh.shader.uniforms.uScale.value.x = 1, mesh.shader.uniforms.uScale.value.y = 1, mesh.scale.copy(mesh.oScale))
+            Device.mobile && Stage.height > Stage.width ? (mesh.scale.x = 1.86, mesh.scale.y = 1.74, mesh.shader.uniforms.uScale.value.x = 1.24, mesh.shader.uniforms.uScale.value.y = .86) : (mesh.shader.uniforms.uScale.value.x = 1, mesh.shader.uniforms.uScale.value.y = 1, mesh.scale.copy(mesh.oScale))
         }
         _this.add(ui), ui.shader = ui_shader, ui.shader.depthWrite = !1, ui.visible = !1, ui.frustumCulled = !1, ui.position.z = 0, ui.shader.upload(), mesh.oScale = (new Vector3).copy(mesh.scale), updateLayout(), _this.onResize(updateLayout), _this.onInit = async _ => {
             let video = await _this.get("Work/video");
@@ -44548,17 +44548,17 @@ SkinAnimation.tempPos = new Vector3, SkinAnimation.tempRot = new Quaternion, Ski
             let views = _this.viewState.views,
                 angle = 0,
                 total = mobile ? Math.min(4, views.length) : Math.min(7, views.length),
-                step = mobile ? Math.radians(44) : Math.radians(50),
-                radius = mobile ? 2.2 : 3.8,
-                distanceMul = mobile ? 1.08 : 2,
-                y = mobile ? 1.14 : 0,
-                yStep = mobile ? .052 * total : .12 * total;
+                step = mobile ? Math.radians(52) : Math.radians(50),
+                radius = mobile ? 2.7 : 3.8,
+                distanceMul = mobile ? 1.42 : 2,
+                y = mobile ? 1.95 : 0,
+                yStep = mobile ? .11 * total : .12 * total;
             views.forEach(((view, i) => {
                 view.group.position.x = radius * Math.cos(angle), view.group.position.z = radius * Math.sin(angle), view.group.position.y = 0;
                 let pos = view.group.position.clone();
                 pos.multiplyScalar(distanceMul), view.group.lookAt(pos), angle -= step, view.group.position.y = y - yStep * i, pos.y = y - yStep * i;
                 let target = new Group;
-                target.position.copy(pos), Device.mobile && Stage.width < Stage.height && (target.position.y -= .02), target.quaternion.copy(view.group.quaternion), _cameraTargets.push(target), tween(view.group.scale, {
+                target.position.copy(pos), Device.mobile && Stage.width < Stage.height && (target.position.y -= .34), target.quaternion.copy(view.group.quaternion), _cameraTargets.push(target), tween(view.group.scale, {
                     x: 1,
                     y: 1,
                     z: 1
@@ -44579,7 +44579,7 @@ SkinAnimation.tempPos = new Vector3, SkinAnimation.tempRot = new Quaternion, Ski
         _this.handleCameraScroll = _ => {
             if (_this.flag("locked")) return;
             if (!_cameraTargets[0] || null == root.scrollProgress) return;
-            let offset = Device.mobile ? .08 : .06;
+            let offset = Device.mobile ? .1 : .06;
             scrollValue = Math.smoothStep(offset, 1 - offset, root.scrollProgress);
             let numPlanes = _cameraTargets.length,
                 segmentPosition = scrollValue * (numPlanes - 1),
