@@ -138,363 +138,6 @@
             transition: opacity 280ms ease;
         }
 
-        .mobile-work-ui,
-        .mobile-project-modal {
-            display: none;
-        }
-
-        .mobile-work-ui {
-            position: fixed;
-            inset: 0;
-            z-index: 9;
-            overflow: hidden;
-            pointer-events: none;
-            font-family: "nbarchitekt", monospace;
-            color: rgba(235, 255, 251, 0.94);
-            background:
-                radial-gradient(circle at 18% 14%, rgba(84, 255, 232, 0.14), transparent 28%),
-                radial-gradient(circle at 84% 16%, rgba(225, 255, 92, 0.1), transparent 26%),
-                linear-gradient(180deg, rgba(2, 5, 7, 0.76), rgba(2, 5, 7, 0.92));
-            backdrop-filter: blur(16px);
-        }
-
-        .mobile-work-ui::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 22px 22px;
-            opacity: 0.34;
-            mask-image: radial-gradient(circle at center, black 38%, transparent 88%);
-        }
-
-        .mobile-work-scroll {
-            position: relative;
-            z-index: 1;
-            height: 100%;
-            overflow-y: auto;
-            pointer-events: auto;
-            padding: calc(env(safe-area-inset-top) + 14px) calc(env(safe-area-inset-right) + 14px) calc(env(safe-area-inset-bottom) + 18px) calc(env(safe-area-inset-left) + 14px);
-        }
-
-        .mobile-work-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .mobile-work-brand {
-            display: grid;
-            gap: 3px;
-        }
-
-        .mobile-work-kicker {
-            color: rgba(157, 252, 230, 0.74);
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-        }
-
-        .mobile-work-title {
-            color: rgba(235, 255, 251, 0.96);
-            font-size: 20px;
-            line-height: 1;
-            letter-spacing: 0.01em;
-        }
-
-        .mobile-work-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .mobile-work-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 38px;
-            padding: 0 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(157, 252, 230, 0.18);
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(235, 255, 251, 0.9);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .mobile-work-hero {
-            margin-bottom: 14px;
-            padding: 16px;
-            border-radius: 24px;
-            border: 1px solid rgba(157, 252, 230, 0.12);
-            background:
-                radial-gradient(circle at 82% 18%, rgba(157, 252, 230, 0.1), transparent 30%),
-                linear-gradient(180deg, rgba(8, 14, 18, 0.84), rgba(4, 8, 10, 0.9));
-            box-shadow:
-                0 20px 48px rgba(0, 0, 0, 0.3),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-        }
-
-        .mobile-work-hero-title {
-            margin: 0 0 8px;
-            font-size: 32px;
-            line-height: 0.94;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-        }
-
-        .mobile-work-hero-copy {
-            margin: 0;
-            color: rgba(235, 255, 251, 0.7);
-            font-size: 13px;
-            line-height: 1.62;
-        }
-
-        .mobile-contact-strip {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 8px;
-            margin: 0 0 16px;
-        }
-
-        .mobile-contact-chip {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 42px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(235, 255, 251, 0.9);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .mobile-project-feed {
-            display: grid;
-            gap: 12px;
-            padding-bottom: 8px;
-        }
-
-        .mobile-project-card {
-            position: relative;
-            display: block;
-            width: 100%;
-            padding: 0;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            overflow: hidden;
-            background:
-                linear-gradient(180deg, rgba(8, 14, 18, 0.88), rgba(4, 8, 10, 0.9));
-            box-shadow:
-                0 18px 42px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-            color: inherit;
-            text-align: left;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-
-        .mobile-project-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--project-accent, #9dfce6) 42%, transparent);
-            pointer-events: none;
-        }
-
-        .mobile-project-thumb {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .mobile-project-overlay {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(180deg, rgba(3, 5, 7, 0.04), rgba(3, 5, 7, 0.12) 38%, rgba(3, 5, 7, 0.84) 100%);
-            pointer-events: none;
-        }
-
-        .mobile-project-copy {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: grid;
-            gap: 6px;
-            padding: 16px 16px 15px;
-            z-index: 1;
-        }
-
-        .mobile-project-tag {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 22px;
-            width: fit-content;
-            padding: 0 8px;
-            border-radius: 999px;
-            border: 1px solid color-mix(in srgb, var(--project-accent, #9dfce6) 56%, transparent);
-            color: color-mix(in srgb, var(--project-accent, #9dfce6) 84%, white 16%);
-            font-size: 9px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            background: rgba(3, 5, 7, 0.36);
-            backdrop-filter: blur(8px);
-        }
-
-        .mobile-project-name {
-            margin: 0;
-            font-size: 24px;
-            line-height: 0.96;
-            letter-spacing: -0.03em;
-        }
-
-        .mobile-project-desc {
-            margin: 0;
-            color: rgba(235, 255, 251, 0.72);
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .mobile-project-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            color: rgba(235, 255, 251, 0.56);
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .mobile-project-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 12;
-            background: rgba(2, 5, 7, 0.76);
-            backdrop-filter: blur(18px);
-            padding: calc(env(safe-area-inset-top) + 12px) calc(env(safe-area-inset-right) + 12px) calc(env(safe-area-inset-bottom) + 12px) calc(env(safe-area-inset-left) + 12px);
-        }
-
-        .mobile-project-modal[hidden] {
-            display: none !important;
-        }
-
-        .mobile-project-dialog {
-            position: relative;
-            display: grid;
-            gap: 14px;
-            width: min(100%, 460px);
-            max-height: calc(100dvh - 24px);
-            overflow-y: auto;
-            margin: 0 auto;
-            padding: 14px;
-            border-radius: 26px;
-            border: 1px solid rgba(157, 252, 230, 0.16);
-            background:
-                radial-gradient(circle at 82% 16%, rgba(157, 252, 230, 0.1), transparent 26%),
-                linear-gradient(180deg, rgba(8, 14, 18, 0.96), rgba(4, 8, 10, 0.98));
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.44);
-        }
-
-        .mobile-project-close {
-            position: sticky;
-            top: 0;
-            justify-self: end;
-            z-index: 2;
-            width: 38px;
-            height: 38px;
-            border: 1px solid rgba(157, 252, 230, 0.18);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(235, 255, 251, 0.94);
-            font: inherit;
-            font-size: 18px;
-        }
-
-        .mobile-project-video {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius: 18px;
-            background: #050809;
-        }
-
-        .mobile-project-detail {
-            display: grid;
-            gap: 10px;
-        }
-
-        .mobile-project-detail h2 {
-            margin: 0;
-            font-size: 26px;
-            line-height: 0.96;
-            letter-spacing: -0.03em;
-        }
-
-        .mobile-project-detail p {
-            margin: 0;
-            color: rgba(235, 255, 251, 0.72);
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .mobile-project-detail-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .mobile-project-detail-meta span {
-            display: inline-flex;
-            align-items: center;
-            min-height: 28px;
-            padding: 0 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.035);
-            color: rgba(235, 255, 251, 0.82);
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .mobile-project-detail-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .mobile-project-detail-actions a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 44px;
-            border-radius: 16px;
-            border: 1px solid rgba(157, 252, 230, 0.18);
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(235, 255, 251, 0.92);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
         body.contact-open .contact-shell {
             opacity: 1;
             pointer-events: auto;
@@ -1118,33 +761,98 @@
         }
 
         @media (max-width: 768px) {
-            .NavigationUI,
-            .work-note,
-            .contact-shell {
-                display: none !important;
+            html,
+            body {
+                background: #041115;
             }
 
-            .mobile-work-ui,
-            .mobile-project-modal {
-                display: block;
+            #Stage {
+                background:
+                    radial-gradient(circle at 18% 18%, rgba(107, 255, 236, 0.12), transparent 32%),
+                    radial-gradient(circle at 84% 74%, rgba(226, 255, 105, 0.08), transparent 26%),
+                    #041115;
+            }
+
+            #Stage canvas {
+                filter: brightness(1.22) contrast(1.08) saturate(1.12);
+            }
+
+            .NavigationUI {
+                transform: scale(0.92);
+                transform-origin: top right;
+                filter: brightness(1.08);
+            }
+
+            .NavigationUI .wrapper {
+                background-color: rgba(8, 18, 22, 0.18) !important;
+                backdrop-filter: blur(8px);
+                opacity: 0.94 !important;
+            }
+
+            .work-note {
+                left: 16px;
+                bottom: calc(env(safe-area-inset-bottom) + 18px);
+                gap: 6px;
+                max-width: min(220px, calc(100vw - 32px));
+                opacity: 0.82;
+            }
+
+            .work-note-title {
+                font-size: 12px;
+                gap: 9px;
+                letter-spacing: 0.19em;
+            }
+
+            .work-note-title::before {
+                width: 18px;
+            }
+
+            .work-note-copy {
+                font-size: 10px;
+                line-height: 1.5;
+                max-width: 22ch;
+            }
+
+            .contact-card {
+                width: min(92vw, 560px);
+                top: 50%;
+            }
+
+            .contact-stage {
+                min-height: min(620px, calc(100vh - 24px));
+            }
+
+            .contact-stage::before {
+                font-size: clamp(96px, 27vw, 172px);
+            }
+
+            .ChatDOM .wrapper {
+                width: min(94vw, 540px) !important;
+                height: calc(100% - 90px) !important;
+                padding: 1.35rem 1.2rem 1.25rem !important;
+                background: linear-gradient(180deg, rgba(8, 16, 20, 0.22), rgba(8, 16, 20, 0.04)) !important;
+                border-radius: 24px;
+                backdrop-filter: blur(8px);
+            }
+
+            .ChatDOM .messages {
+                -webkit-mask-image: linear-gradient(to top, white 0%, white 84%, transparent 98%) !important;
+                mask-image: linear-gradient(to top, white 0%, white 84%, transparent 98%) !important;
             }
         }
 
         @media (max-width: 480px) {
-            .mobile-work-hero-title {
-                font-size: 28px;
+            .NavigationUI {
+                transform: scale(0.84);
             }
 
-            .mobile-contact-strip {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .work-note {
+                display: none;
             }
 
-            .mobile-project-name {
-                font-size: 22px;
-            }
-
-            .mobile-project-detail-actions {
-                grid-template-columns: 1fr;
+            .ChatDOM .wrapper {
+                width: min(94vw, 460px) !important;
+                padding: 1.2rem 1rem 1.1rem !important;
             }
         }
     </style>
@@ -1318,52 +1026,6 @@
             </div>
         </div>
     </div>
-    <div class="mobile-work-ui" id="mobile-work-ui" aria-hidden="true">
-        <div class="mobile-work-scroll">
-            <header class="mobile-work-header">
-                <div class="mobile-work-brand">
-                    <span class="mobile-work-kicker">Alfa Led Ekran</span>
-                    <strong class="mobile-work-title">Projeler</strong>
-                </div>
-                <div class="mobile-work-actions">
-                    <a class="mobile-work-action" href="https://wa.me/905411871408" target="_blank" rel="noreferrer">WhatsApp</a>
-                </div>
-            </header>
-
-            <section class="mobile-work-hero" aria-label="Mobil proje tarayici">
-                <h1 class="mobile-work-hero-title">Mobilde daha net bir proje akisi</h1>
-                <p class="mobile-work-hero-copy">Telefon ekraninda sahneyi tahmin etmek yerine, secili uygulamalari dogrudan kartlardan gezebilir, videolari acip detaylari rahatca gorebilirsiniz.</p>
-            </section>
-
-            <div class="mobile-contact-strip" aria-label="Hizli iletisim">
-                <a class="mobile-contact-chip" href="mailto:info@alfaledekran.com">E-posta</a>
-                <a class="mobile-contact-chip" href="https://www.instagram.com/alfaledsatis?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer">Instagram</a>
-                <a class="mobile-contact-chip" href="https://www.linkedin.com/in/turan-alfa-led-4b8a51ab" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="mobile-contact-chip" href="https://wa.me/905411871408" target="_blank" rel="noreferrer">Iletisim</a>
-            </div>
-
-            <section class="mobile-project-feed" id="mobile-project-feed" aria-live="polite"></section>
-        </div>
-    </div>
-    <div class="mobile-project-modal" id="mobile-project-modal" hidden>
-        <div class="mobile-project-dialog" role="dialog" aria-modal="true" aria-labelledby="mobile-project-modal-title">
-            <button class="mobile-project-close" id="mobile-project-close" type="button" aria-label="Projeyi kapat">×</button>
-            <video class="mobile-project-video" id="mobile-project-video" controls playsinline preload="metadata"></video>
-            <div class="mobile-project-detail">
-                <span class="mobile-project-tag" id="mobile-project-modal-tag">Showcase</span>
-                <h2 id="mobile-project-modal-title">Proje</h2>
-                <p id="mobile-project-modal-copy"></p>
-                <div class="mobile-project-detail-meta">
-                    <span id="mobile-project-modal-client"></span>
-                    <span id="mobile-project-modal-date"></span>
-                </div>
-                <div class="mobile-project-detail-actions">
-                    <a id="mobile-project-modal-whatsapp" href="https://wa.me/905411871408" target="_blank" rel="noreferrer">WhatsApp</a>
-                    <a id="mobile-project-modal-instagram" href="https://www.instagram.com/alfaledsatis?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer">Instagram</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         !function() {
             const chars = "&/+%#*0123456789";
@@ -1479,116 +1141,6 @@
 
             updateUi();
             setInterval(updateUi, 160);
-        }();
-    </script>
-    <script>
-        !function() {
-            const mobileUi = document.getElementById("mobile-work-ui");
-            const feed = document.getElementById("mobile-project-feed");
-            const modal = document.getElementById("mobile-project-modal");
-            const modalClose = document.getElementById("mobile-project-close");
-            const modalVideo = document.getElementById("mobile-project-video");
-            const modalTag = document.getElementById("mobile-project-modal-tag");
-            const modalTitle = document.getElementById("mobile-project-modal-title");
-            const modalCopy = document.getElementById("mobile-project-modal-copy");
-            const modalClient = document.getElementById("mobile-project-modal-client");
-            const modalDate = document.getElementById("mobile-project-modal-date");
-            const modalWhatsapp = document.getElementById("mobile-project-modal-whatsapp");
-            const projectsPath = "assets/cms/projects-dev.json";
-            let projects = [];
-
-            const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
-
-            const escapeHtml = value => String(value ?? "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/\"/g, "&quot;")
-                .replace(/'/g, "&#39;");
-
-            const formatDate = value => {
-                if (!value) return "ALFA LED";
-                const date = new Date(value);
-                if (Number.isNaN(date.getTime())) return "ALFA LED";
-                return new Intl.DateTimeFormat("tr-TR", { month: "short", year: "numeric" }).format(date);
-            };
-
-            function closeProject() {
-                document.body.classList.remove("mobile-project-open");
-                modal.hidden = true;
-                modalVideo.pause();
-                modalVideo.removeAttribute("src");
-                modalVideo.load();
-            }
-
-            function openProject(project) {
-                if (!project) return;
-                modalTag.textContent = project.tags || "Showcase";
-                modalTag.style.setProperty("--project-accent", `#${project.uiColor || "9dfce6"}`);
-                modalTitle.textContent = project.name || "ALFA LED";
-                modalCopy.textContent = project.description || "ALFA LED proje videosu.";
-                modalClient.textContent = project.clientName || "ALFA LED";
-                modalDate.textContent = formatDate(project.completionDate);
-                modalVideo.poster = project.video?.thumbnail || "";
-                modalVideo.src = project.video?.url || "";
-                modalWhatsapp.href = `https://wa.me/905411871408?text=${encodeURIComponent(`${project.name || "ALFA LED"} projesi icin bilgi almak istiyorum.`)}`;
-                modal.hidden = false;
-                document.body.classList.add("mobile-project-open");
-                modalVideo.load();
-                const playPromise = modalVideo.play();
-                if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
-            }
-
-            function renderProjects() {
-                if (!feed) return;
-                feed.innerHTML = projects.map((project, index) => `
-                    <button type="button" class="mobile-project-card" data-project-index="${index}" style="--project-accent:#${escapeHtml(project.uiColor || "9dfce6")}">
-                        <img class="mobile-project-thumb" src="${escapeHtml(project.video?.thumbnail || project.projectLogo?.url || "")}" alt="${escapeHtml(project.name || "ALFA LED")}" loading="lazy">
-                        <div class="mobile-project-overlay" aria-hidden="true"></div>
-                        <div class="mobile-project-copy">
-                            <span class="mobile-project-tag">${escapeHtml(project.tags || "Showcase")}</span>
-                            <h2 class="mobile-project-name">${escapeHtml(project.name || "ALFA LED")}</h2>
-                            <p class="mobile-project-desc">${escapeHtml(project.description || "ALFA LED proje videosu.")}</p>
-                            <div class="mobile-project-meta">
-                                <span>${escapeHtml(project.clientName || "ALFA LED")}</span>
-                                <span>${escapeHtml(formatDate(project.completionDate))}</span>
-                            </div>
-                        </div>
-                    </button>
-                `).join("");
-            }
-
-            async function loadProjects() {
-                if (!isMobile() || !mobileUi || !feed) return;
-                try {
-                    const response = await fetch(`${projectsPath}?mobile=${Date.now()}`, { cache: "no-store" });
-                    if (!response.ok) throw new Error("Projects fetch failed");
-                    projects = await response.json();
-                    renderProjects();
-                } catch (error) {
-                    feed.innerHTML = `<div class="mobile-work-hero"><p class="mobile-work-hero-copy">Projeler simdilik yuklenemedi. WhatsApp uzerinden bizimle hemen iletisime gecebilirsiniz.</p></div>`;
-                }
-            }
-
-            feed?.addEventListener("click", event => {
-                const card = event.target.closest("[data-project-index]");
-                if (!card) return;
-                const project = projects[Number(card.dataset.projectIndex)];
-                openProject(project);
-            });
-
-            modalClose?.addEventListener("click", closeProject);
-            modal?.addEventListener("click", event => {
-                if (event.target === modal) closeProject();
-            });
-
-            window.addEventListener("resize", () => {
-                if (!isMobile()) closeProject();
-                mobileUi?.setAttribute("aria-hidden", isMobile() ? "false" : "true");
-            }, { passive: true });
-
-            mobileUi?.setAttribute("aria-hidden", isMobile() ? "false" : "true");
-            loadProjects();
         }();
     </script>
 </body>
