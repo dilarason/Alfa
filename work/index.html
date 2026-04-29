@@ -767,6 +767,8 @@
                 width: 100%;
                 min-height: 100vh;
                 min-height: 100dvh;
+                overflow-x: hidden;
+                touch-action: manipulation;
             }
 
             #Stage {
@@ -776,6 +778,8 @@
                     #041115;
                 min-height: 100vh;
                 min-height: 100dvh;
+                width: 100vw;
+                overflow: hidden;
             }
 
             #Stage canvas {
@@ -784,12 +788,32 @@
 
             .NavigationUI {
                 filter: brightness(1.14) contrast(1.04);
+                right: max(8px, env(safe-area-inset-right));
+                top: max(8px, env(safe-area-inset-top));
             }
 
             .NavigationUI .wrapper {
                 background-color: rgba(8, 18, 22, 0.18) !important;
                 backdrop-filter: blur(8px);
                 opacity: 0.94 !important;
+                max-width: min(94vw, 420px) !important;
+            }
+
+            [class*="Work"] video,
+            [class*="work"] video,
+            [class*="Work"] canvas,
+            [class*="work"] canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            [class*="WorkPane"],
+            [class*="workPane"],
+            [id*="work-pane"],
+            [id*="WorkPane"] {
+                max-width: calc(100vw - 16px) !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
             }
 
             .work-note {
@@ -853,6 +877,10 @@
         @media (max-width: 480px) {
             .work-note {
                 display: none;
+            }
+
+            .NavigationUI .wrapper {
+                max-width: min(95vw, 360px) !important;
             }
 
             .ChatDOM .wrapper {
