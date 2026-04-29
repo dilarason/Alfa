@@ -327,6 +327,14 @@
           img.loading = "lazy";
           img.alt = title;
           img.src = poster;
+          img.addEventListener("error", () => {
+            if (img.dataset.fallbackTried === "1") {
+              img.style.opacity = "0.18";
+              return;
+            }
+            img.dataset.fallbackTried = "1";
+            img.src = "/assets/meta/social.jpg";
+          });
 
           const shine = document.createElement("div");
           shine.className = "shine";
