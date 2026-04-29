@@ -767,7 +767,6 @@
                 width: 100%;
                 min-height: 100vh;
                 min-height: 100dvh;
-                height: 100dvh;
             }
 
             #Stage {
@@ -777,7 +776,6 @@
                     #041115;
                 min-height: 100vh;
                 min-height: 100dvh;
-                height: 100dvh;
             }
 
             #Stage canvas {
@@ -785,8 +783,6 @@
             }
 
             .NavigationUI {
-                transform: none !important;
-                transform-origin: top right;
                 filter: brightness(1.14) contrast(1.04);
             }
 
@@ -794,9 +790,6 @@
                 background-color: rgba(8, 18, 22, 0.18) !important;
                 backdrop-filter: blur(8px);
                 opacity: 0.94 !important;
-                max-height: calc(100dvh - 24px);
-                overflow-y: auto;
-                padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
             }
 
             .work-note {
@@ -858,10 +851,6 @@
         }
 
         @media (max-width: 480px) {
-            .NavigationUI {
-                transform: none !important;
-            }
-
             .work-note {
                 display: none;
             }
