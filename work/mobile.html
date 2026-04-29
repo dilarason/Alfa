@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ALFA LED - Projeler</title>
+  <title>ALFA LED - Work Mobile</title>
   <style>
     :root {
-      --bg: #060d13;
-      --bg2: #0b1720;
-      --panel: #0f212b;
-      --line: rgba(124, 229, 214, 0.24);
-      --line-strong: rgba(124, 229, 214, 0.44);
-      --text: #e9f7f5;
-      --muted: #9ab3b5;
-      --accent: #79e9d5;
+      --bg: #04090d;
+      --panel: #0a1218;
+      --line: rgba(170, 199, 205, 0.25);
+      --line-strong: rgba(214, 232, 235, 0.48);
+      --text: #eef4f5;
+      --muted: #97aab0;
     }
 
     * { box-sizing: border-box; }
@@ -22,8 +20,8 @@
       margin: 0;
       padding: 0;
       min-height: 100%;
-      background: radial-gradient(circle at 14% 8%, #12313b 0%, transparent 40%),
-                  linear-gradient(160deg, var(--bg2), var(--bg));
+      background: radial-gradient(circle at 20% -10%, #132029 0%, transparent 48%),
+                  linear-gradient(180deg, #070d12, var(--bg));
       color: var(--text);
       font-family: "NB Architekt Std", "Segoe UI", Arial, sans-serif;
     }
@@ -31,7 +29,7 @@
     .shell {
       width: min(760px, 100%);
       margin: 0 auto;
-      padding: 12px 12px calc(env(safe-area-inset-bottom) + 16px);
+      padding: 10px 10px calc(env(safe-area-inset-bottom) + 14px);
     }
 
     .topbar {
@@ -42,43 +40,49 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      margin: 2px 0 10px;
+      padding: 10px 12px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 9px 12px;
-      background: rgba(5, 13, 19, 0.82);
+      background: rgba(6, 11, 15, 0.78);
       backdrop-filter: blur(8px);
-      margin: 4px 0 12px;
     }
 
     .brand {
       font-size: 12px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.17em;
       text-transform: uppercase;
-      color: #d7f8f2;
     }
 
     .home {
       color: var(--text);
       text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       border: 1px solid var(--line);
       border-radius: 999px;
+      padding: 6px 9px;
+    }
+
+    .head {
+      margin: 6px 2px 12px;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--muted);
       font-size: 11px;
-      padding: 6px 10px;
-      background: rgba(121, 233, 213, 0.08);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
     h1 {
-      margin: 0 0 6px;
-      font-size: clamp(24px, 8vw, 34px);
-      line-height: 1.08;
-    }
-
-    .sub {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-      max-width: 38ch;
+      margin: 6px 0 0;
+      font-size: clamp(26px, 7.2vw, 34px);
+      letter-spacing: 0.01em;
+      line-height: 1.05;
+      font-weight: 600;
     }
 
     .status {
@@ -90,19 +94,19 @@
     .list {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 8px;
     }
 
     .panel {
       position: relative;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(14, 33, 43, 0.96), rgba(7, 18, 24, 0.96));
+      border-radius: 10px;
       overflow: hidden;
+      background: var(--panel);
       cursor: pointer;
-      transform: translateY(16px);
+      transform: translateY(14px);
       opacity: 0;
-      transition: transform 420ms ease, opacity 420ms ease, border-color 220ms ease;
+      transition: transform 420ms cubic-bezier(.2,.7,.2,1), opacity 420ms ease, border-color 220ms ease;
     }
 
     .panel.in {
@@ -116,82 +120,92 @@
 
     .panel-media {
       width: 100%;
-      aspect-ratio: 16 / 7;
+      aspect-ratio: 16 / 8;
       object-fit: cover;
       display: block;
-      background: #08131a;
-      filter: contrast(1.08) saturate(1.08) brightness(1.03);
+      background: #071018;
+      transform: scale(1.02);
+      transition: transform 420ms ease;
+    }
+
+    .panel:hover .panel-media,
+    .panel:active .panel-media {
+      transform: scale(1.05);
     }
 
     .scanline {
       position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        rgba(0, 0, 0, 0.02) 2px,
+        rgba(0, 0, 0, 0.02) 3px
+      );
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    .panel-overlay {
+      position: absolute;
       left: 0;
       right: 0;
-      top: -40%;
-      height: 35%;
-      background: linear-gradient(180deg, rgba(121,233,213,0.02), rgba(121,233,213,0.18), rgba(121,233,213,0.02));
-      animation: scan 3.8s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes scan {
-      to { transform: translateY(320%); }
-    }
-
-    .panel-body {
+      bottom: 0;
+      padding: 14px 10px 10px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(2,7,10,0.92) 85%);
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
       gap: 10px;
-      padding: 10px 11px;
-      border-top: 1px solid rgba(124, 229, 214, 0.15);
     }
 
     .panel-title {
       margin: 0;
-      font-size: 15px;
-      line-height: 1.3;
+      font-size: 18px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.45);
     }
 
     .panel-open {
       font-size: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: #ccfaf2;
-      border: 1px solid rgba(124, 229, 214, 0.35);
+      border: 1px solid rgba(214, 232, 235, 0.44);
       border-radius: 999px;
       padding: 5px 8px;
+      color: #e5f1f3;
+      background: rgba(7, 14, 18, 0.54);
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(2, 8, 12, 0.88);
-      backdrop-filter: blur(10px);
       z-index: 100;
       display: none;
-      align-items: flex-end;
+      background: rgba(3, 8, 11, 0.9);
+      backdrop-filter: blur(8px);
     }
 
     .modal.show {
-      display: flex;
+      display: block;
     }
 
     .sheet {
-      width: 100%;
-      max-height: 92vh;
-      border-radius: 18px 18px 0 0;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #0c1d27, #071219);
+      height: 100%;
       overflow: auto;
-      padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
-      transform: translateY(100%);
-      transition: transform 260ms ease;
+      padding: 12px 10px calc(env(safe-area-inset-bottom) + 14px);
+      transform: translateY(14px);
+      opacity: 0;
+      transition: transform 220ms ease, opacity 220ms ease;
     }
 
     .modal.show .sheet {
       transform: translateY(0);
+      opacity: 1;
     }
 
     .sheet-head {
@@ -202,56 +216,61 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 12px;
-      border-bottom: 1px solid rgba(124, 229, 214, 0.18);
-      background: rgba(8, 19, 26, 0.9);
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 11, 15, 0.82);
       backdrop-filter: blur(8px);
     }
 
     .sheet-title {
       margin: 0;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.3;
       flex: 1;
     }
 
     .close {
       border: 1px solid var(--line);
-      background: rgba(121, 233, 213, 0.08);
-      color: var(--text);
       border-radius: 999px;
+      background: transparent;
+      color: var(--text);
       font-size: 11px;
-      padding: 6px 10px;
-    }
-
-    .sheet-media-wrap {
-      padding: 10px 12px 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 9px;
     }
 
     .sheet-media {
       width: 100%;
-      max-height: 54vh;
-      border-radius: 12px;
-      border: 1px solid rgba(124, 229, 214, 0.2);
-      background: #060f16;
+      max-height: 56vh;
+      border: 1px solid var(--line);
+      border-radius: 10px;
       object-fit: cover;
+      background: #070f14;
+      display: block;
     }
 
     .sheet-body {
-      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(7, 14, 19, 0.72);
     }
 
     .sheet-desc {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.5;
       white-space: pre-line;
     }
 
     .sheet-link {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 10px;
       color: var(--text);
       text-decoration: none;
       font-size: 11px;
@@ -259,8 +278,7 @@
       text-transform: uppercase;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 8px 12px;
-      background: rgba(121, 233, 213, 0.08);
+      padding: 7px 10px;
     }
   </style>
 </head>
@@ -271,8 +289,10 @@
       <a class="home" href="/">Anasayfa</a>
     </header>
 
-    <h1>Projeler</h1>
-    <p class="sub">LED paneller alt alta listelenir. Kartlara dokununca proje detayi acilir.</p>
+    <section class="head">
+      <p class="kicker">Work</p>
+      <h1>Projeler</h1>
+    </section>
 
     <div id="status" class="status">Projeler yukleniyor...</div>
     <section id="list" class="list" aria-live="polite"></section>
@@ -284,7 +304,7 @@
         <h2 id="m-title" class="sheet-title"></h2>
         <button id="m-close" class="close" type="button">Kapat</button>
       </header>
-      <div class="sheet-media-wrap" id="m-media-wrap"></div>
+      <div id="m-media-wrap"></div>
       <div class="sheet-body">
         <p id="m-desc" class="sheet-desc"></p>
         <a id="m-link" class="sheet-link" href="#" target="_blank" rel="noopener" style="display:none">Projeyi Ac</a>
@@ -296,7 +316,6 @@
     (async function () {
       const statusEl = document.getElementById("status");
       const listEl = document.getElementById("list");
-
       const modal = document.getElementById("modal");
       const mTitle = document.getElementById("m-title");
       const mDesc = document.getElementById("m-desc");
@@ -322,7 +341,7 @@
         if (v) {
           try { v.pause(); } catch (_) {}
         }
-        setTimeout(() => { mMediaWrap.innerHTML = ""; }, 260);
+        setTimeout(() => { mMediaWrap.innerHTML = ""; }, 220);
       };
 
       modal.addEventListener("click", (e) => {
@@ -384,7 +403,7 @@
         const data = await res.json();
         const items = (Array.isArray(data) ? data : [])
           .filter((x) => x && x.video && (x.video.thumbnail || x.video.url))
-          .slice(0, 22);
+          .slice(0, 24);
 
         if (!items.length) {
           statusEl.textContent = "Proje bulunamadi.";
@@ -396,7 +415,7 @@
         items.forEach((item, idx) => {
           const panel = document.createElement("article");
           panel.className = "panel";
-          panel.style.transitionDelay = Math.min(idx * 35, 300) + "ms";
+          panel.style.transitionDelay = Math.min(idx * 28, 260) + "ms";
 
           const media = document.createElement("img");
           media.className = "panel-media";
@@ -410,8 +429,8 @@
           const scan = document.createElement("div");
           scan.className = "scanline";
 
-          const body = document.createElement("div");
-          body.className = "panel-body";
+          const overlay = document.createElement("div");
+          overlay.className = "panel-overlay";
 
           const title = document.createElement("h3");
           title.className = "panel-title";
@@ -419,14 +438,14 @@
 
           const open = document.createElement("span");
           open.className = "panel-open";
-          open.textContent = "Ac";
+          open.textContent = "Detay";
 
-          body.appendChild(title);
-          body.appendChild(open);
+          overlay.appendChild(title);
+          overlay.appendChild(open);
 
           panel.appendChild(media);
           panel.appendChild(scan);
-          panel.appendChild(body);
+          panel.appendChild(overlay);
 
           panel.addEventListener("click", () => openModal(item));
 
