@@ -5942,7 +5942,7 @@
     "src": "assets/images/_scenelayout/uv.jpg",
     "useCompressed": false
   },
-  "WorkPageBG/WorkPageBG/Element_5_work_page/uDarken": 0.55,
+  "WorkPageBG/WorkPageBG/Element_5_work_page/uDarken": 0.26,
   "WorkPageCompositeuDOF": [
     0.1,
     0.4099999999999999,
@@ -5953,8 +5953,8 @@
     1.15,
     1.55
   ],
-  "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uFresnelMin": 0.4,
-  "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uFresnelStrength": 0.73,
+  "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uFresnelMin": 0.24,
+  "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uFresnelStrength": 0.55,
   "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uSize": 1.92,
   "WorkPageParticleShader/WorkPageParticleShader/P_Element_4_work_page/uVideoBound": [
     0.8,
@@ -5969,7 +5969,7 @@
     0.11000000000000001,
     -0.04000000000000005
   ],
-  "WorkSceneBackground/WorkSceneBackground/uColorBalance": 0.82,
+  "WorkSceneBackground/WorkSceneBackground/uColorBalance": 1.08,
   "WorkSceneBackground/WorkSceneBackground/uLightPos": [
     2.7400000000000007,
     -1,

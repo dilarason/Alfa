@@ -764,6 +764,10 @@
             html,
             body {
                 background: #041115;
+                width: 100%;
+                min-height: 100vh;
+                min-height: 100dvh;
+                height: 100dvh;
             }
 
             #Stage {
@@ -771,22 +775,28 @@
                     radial-gradient(circle at 18% 18%, rgba(107, 255, 236, 0.12), transparent 32%),
                     radial-gradient(circle at 84% 74%, rgba(226, 255, 105, 0.08), transparent 26%),
                     #041115;
+                min-height: 100vh;
+                min-height: 100dvh;
+                height: 100dvh;
             }
 
             #Stage canvas {
-                filter: brightness(1.22) contrast(1.08) saturate(1.12);
+                filter: brightness(1.32) contrast(1.1) saturate(1.2);
             }
 
             .NavigationUI {
-                transform: scale(0.92);
+                transform: none !important;
                 transform-origin: top right;
-                filter: brightness(1.08);
+                filter: brightness(1.14) contrast(1.04);
             }
 
             .NavigationUI .wrapper {
                 background-color: rgba(8, 18, 22, 0.18) !important;
                 backdrop-filter: blur(8px);
                 opacity: 0.94 !important;
+                max-height: calc(100dvh - 24px);
+                overflow-y: auto;
+                padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
             }
 
             .work-note {
@@ -839,11 +849,17 @@
                 -webkit-mask-image: linear-gradient(to top, white 0%, white 84%, transparent 98%) !important;
                 mask-image: linear-gradient(to top, white 0%, white 84%, transparent 98%) !important;
             }
+
+            video,
+            [class*="Work"] video,
+            [class*="work"] video {
+                filter: brightness(1.24) contrast(1.12) saturate(1.2) !important;
+            }
         }
 
         @media (max-width: 480px) {
             .NavigationUI {
-                transform: scale(0.84);
+                transform: none !important;
             }
 
             .work-note {
@@ -927,6 +943,40 @@
                 h.appendChild(e);
             };
             loadScene();
+            const reviveInlineVideos = () => {
+                const videos = document.querySelectorAll("video");
+                videos.forEach(video => {
+                    try {
+                        video.muted = true;
+                        video.defaultMuted = true;
+                        video.playsInline = true;
+                        video.setAttribute("playsinline", "true");
+                        video.setAttribute("webkit-playsinline", "true");
+                        const playPromise = video.play && video.play();
+                        if (playPromise && typeof playPromise.catch === "function") {
+                            playPromise.catch(() => {});
+                        }
+                    } catch (err) {}
+                });
+            };
+            const bindVideoWake = () => {
+                reviveInlineVideos();
+                window.addEventListener("touchstart", reviveInlineVideos, {
+                    once: true,
+                    passive: true
+                });
+                window.addEventListener("pointerdown", reviveInlineVideos, {
+                    once: true,
+                    passive: true
+                });
+                let attempts = 0;
+                const timer = setInterval(() => {
+                    reviveInlineVideos();
+                    attempts += 1;
+                    if (attempts > 20) clearInterval(timer);
+                }, 750);
+            };
+            bindVideoWake();
             setTimeout(function forceLoaderClose() {
                 try {
                     if (window.Events && typeof window.Events.broadcast === "function") {
