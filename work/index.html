@@ -867,15 +867,6 @@
             window._CMS_ = "assets/cms";
             window._UNSUPPORTED_PAGE_ = "unsupported.html";
             try {
-                const isSmall = Math.min(window.screen.width || 0, window.screen.height || 0) <= 900;
-                const touch = "ontouchstart" in window || (navigator && navigator.maxTouchPoints > 0);
-                const bypass = /(?:\?|&)full=1(?:&|$)/.test(window.location.search);
-                if (!bypass && isSmall && touch) {
-                    window.location.replace("/work/mobile.html");
-                    return;
-                }
-            } catch (e) {}
-            try {
                 eval("let obj = {}; obj?.prop");
             } catch (e) {
                 window.location.replace(window._UNSUPPORTED_PAGE_);
