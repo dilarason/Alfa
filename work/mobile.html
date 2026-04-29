@@ -3,113 +3,410 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ALFA LED - Projeler (Mobil)</title>
+  <title>ALFA LED - Projeler Mobil</title>
   <style>
     :root {
-      --bg: #06141a;
-      --panel: #0d2028;
-      --line: rgba(127, 240, 220, 0.18);
-      --text: #e9fbf7;
-      --muted: #9cb5b0;
+      --bg0: #050b12;
+      --bg1: #0a1723;
+      --glass: rgba(10, 27, 36, 0.64);
+      --line: rgba(120, 234, 222, 0.26);
+      --text: #e8f7f4;
+      --muted: #a0b7b8;
+      --accent: #5bead8;
+      --accent2: #9be96f;
+      --radius: 18px;
     }
+
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "NB Architekt Std", "Segoe UI", Arial, sans-serif; }
-    .wrap { width: min(980px, 100%); margin: 0 auto; padding: 18px 14px calc(env(safe-area-inset-bottom) + 18px); }
-    .head { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(6,20,26,0.96), rgba(6,20,26,0.84)); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-    .head-in { width: min(980px, 100%); margin: 0 auto; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .brand { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
-    .home { color: var(--text); text-decoration: none; font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
-    h1 { margin: 10px 0 6px; font-size: 22px; line-height: 1.2; }
-    .sub { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .card { background: linear-gradient(180deg, rgba(13,32,40,0.95), rgba(8,22,28,0.95)); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    .media { width: 100%; display: block; background: #03090c; aspect-ratio: 16 / 9; object-fit: cover; }
-    .meta { padding: 10px 11px 12px; }
-    .title { margin: 0 0 5px; font-size: 15px; line-height: 1.3; }
-    .desc { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-    .status { color: var(--muted); font-size: 12px; padding: 14px 2px; }
-    @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 16% 12%, #12323d 0%, transparent 38%),
+                  radial-gradient(circle at 86% 4%, #253b22 0%, transparent 34%),
+                  linear-gradient(170deg, var(--bg1), var(--bg0));
+      color: var(--text);
+      min-height: 100%;
+      font-family: "NB Architekt Std", "Segoe UI", Arial, sans-serif;
+    }
+
+    .bg-orb {
+      position: fixed;
+      width: 46vmax;
+      height: 46vmax;
+      border-radius: 50%;
+      filter: blur(52px);
+      opacity: 0.23;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .orb-a { background: #2de2c5; top: -12vmax; left: -12vmax; }
+    .orb-b { background: #86d84f; right: -12vmax; bottom: 12vmax; animation-delay: 1.4s; }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(2vmax, -2vmax, 0) scale(1.08); }
+    }
+
+    .shell {
+      position: relative;
+      z-index: 2;
+      width: min(980px, 100%);
+      margin: 0 auto;
+      padding: 14px 12px calc(env(safe-area-inset-bottom) + 20px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 4px 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(4, 13, 19, 0.76);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+    }
+
+    .brand {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d9faf4;
+    }
+
+    .home {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 6px 11px;
+      background: rgba(91, 234, 216, 0.09);
+    }
+
+    .hero {
+      margin: 8px 2px 14px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #97cbc4;
+      margin-bottom: 7px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 8.1vw, 34px);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      max-width: 18ch;
+    }
+
+    .sub {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.52;
+      max-width: 36ch;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 13px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(9, 24, 33, 0.9), var(--glass));
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transform: translate3d(0, 24px, 0) scale(0.985);
+      opacity: 0;
+      transition: transform 560ms cubic-bezier(.2,.8,.2,1), opacity 560ms ease, border-color 280ms ease;
+    }
+
+    .card.in {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+    }
+
+    .card.playing {
+      border-color: rgba(155, 233, 111, 0.65);
+    }
+
+    .media-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #071018;
+      overflow: hidden;
+    }
+
+    .media-img,
+    .media-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-video {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 260ms ease;
+      background: #040a0f;
+    }
+
+    .card.playing .media-video {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .shine {
+      position: absolute;
+      inset: -120% -30%;
+      background: linear-gradient(120deg, transparent 46%, rgba(255,255,255,0.2) 50%, transparent 54%);
+      animation: sweep 4.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      from { transform: translateX(-58%); }
+      to { transform: translateX(58%); }
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(4, 12, 17, 0.72);
+      border: 1px solid rgba(120, 234, 222, 0.35);
+      color: #c7f8f0;
+      border-radius: 999px;
+      padding: 6px 9px;
+      z-index: 4;
+    }
+
+    .play-btn {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: 999px;
+      background: rgba(2, 9, 14, 0.7);
+      color: #effffe;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 11px;
+      z-index: 5;
+    }
+
+    .body {
+      padding: 11px 12px 13px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      color: #f2fffd;
+    }
+
+    .desc {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .status {
+      color: #9dc5c2;
+      font-size: 12px;
+      padding: 10px 2px;
+    }
+
+    @media (min-width: 700px) {
+      .list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body>
-  <header class="head">
-    <div class="head-in">
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+
+  <main class="shell">
+    <header class="topbar">
       <div class="brand">ALFA LED</div>
       <a class="home" href="/">Anasayfa</a>
-    </div>
-  </header>
-  <main class="wrap">
-    <h1>Projeler</h1>
-    <p class="sub">Mobil uyumlu gorunum. Videolar dokununca oynar, kartlar birbirine girmez.</p>
+    </header>
+
+    <section class="hero">
+      <div class="kicker">Mobile Showcase</div>
+      <h1>Animasyonlu proje kartlari</h1>
+      <p class="sub">Kartlara dokunup videoyu acabilirsin. Video olmayanlarda proje gorseli ve aciklama gosterilir.</p>
+    </section>
+
     <div id="status" class="status">Projeler yukleniyor...</div>
-    <section id="grid" class="grid" aria-live="polite"></section>
+    <section id="list" class="list" aria-live="polite"></section>
   </main>
+
   <script>
     (async function () {
-      const grid = document.getElementById("grid");
-      const status = document.getElementById("status");
-      const norm = (p) => "/" + String(p || "").replace(/^\/+/, "");
-      const isValidVideo = async (url) => {
-        try {
-          const r = await fetch(url, { method: "HEAD", cache: "no-store" });
-          const ct = String(r.headers.get("content-type") || "").toLowerCase();
-          return r.ok && ct.indexOf("video/mp4") !== -1;
-        } catch (_) {
-          return false;
-        }
+      const listEl = document.getElementById("list");
+      const statusEl = document.getElementById("status");
+
+      const normalize = (p) => "/" + String(p || "").replace(/^\/+/, "");
+      const pauseAll = () => {
+        document.querySelectorAll(".card.playing").forEach((card) => {
+          card.classList.remove("playing");
+          const v = card.querySelector("video");
+          if (v) {
+            try { v.pause(); } catch (_) {}
+          }
+          const btn = card.querySelector(".play-btn");
+          if (btn) btn.textContent = "Oynat";
+        });
       };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
       try {
         const res = await fetch("/assets/cms/projects-dev.json", { cache: "no-store" });
-        const list = await res.json();
-        const items = Array.isArray(list) ? list : [];
-        const filtered = items.filter(i => i && i.video && i.video.url).slice(0, 30);
-        if (!filtered.length) {
-          status.textContent = "Proje bulunamadi.";
+        const raw = await res.json();
+        const items = (Array.isArray(raw) ? raw : [])
+          .filter((x) => x && x.video && (x.video.thumbnail || x.video.url))
+          .slice(0, 18);
+
+        if (!items.length) {
+          statusEl.textContent = "Proje bulunamadi.";
           return;
         }
-        status.textContent = "";
-        const checked = await Promise.all(filtered.map(async (item) => {
-          const videoUrl = norm(item.video.url);
-          const thumbUrl = item.video.thumbnail ? norm(item.video.thumbnail) : "";
-          const ok = await isValidVideo(videoUrl);
-          return { item, videoUrl, thumbUrl, ok };
-        }));
 
-        checked.forEach(({ item, videoUrl, thumbUrl, ok }) => {
+        statusEl.textContent = "";
+
+        items.forEach((item, idx) => {
+          const title = item.name || "Proje";
+          const desc = item.description || "";
+          const poster = normalize(item.video.thumbnail || "assets/meta/social.jpg");
+          const videoSrc = item.video.url ? normalize(item.video.url) : "";
+
           const card = document.createElement("article");
           card.className = "card";
-          const media = ok ? document.createElement("video") : document.createElement("img");
-          media.className = "media";
-          if (ok) {
-            media.controls = true;
-            media.muted = true;
-            media.playsInline = true;
-            media.setAttribute("playsinline", "true");
-            media.setAttribute("webkit-playsinline", "true");
-            media.preload = "metadata";
-            media.poster = thumbUrl;
-            media.src = videoUrl;
-          } else {
-            media.loading = "lazy";
-            media.alt = item.name || "Proje gorseli";
-            media.src = thumbUrl;
+          card.style.transitionDelay = Math.min(idx * 45, 360) + "ms";
+
+          const media = document.createElement("div");
+          media.className = "media-wrap";
+
+          const img = document.createElement("img");
+          img.className = "media-img";
+          img.loading = "lazy";
+          img.alt = title;
+          img.src = poster;
+
+          const shine = document.createElement("div");
+          shine.className = "shine";
+
+          const badge = document.createElement("div");
+          badge.className = "badge";
+          badge.textContent = "Proje";
+
+          const playBtn = document.createElement("button");
+          playBtn.className = "play-btn";
+          playBtn.type = "button";
+          playBtn.textContent = videoSrc ? "Oynat" : "Gorsel";
+
+          media.appendChild(img);
+          media.appendChild(shine);
+          media.appendChild(badge);
+          media.appendChild(playBtn);
+
+          let video = null;
+          if (videoSrc) {
+            video = document.createElement("video");
+            video.className = "media-video";
+            video.preload = "metadata";
+            video.playsInline = true;
+            video.muted = true;
+            video.loop = true;
+            video.setAttribute("playsinline", "true");
+            video.setAttribute("webkit-playsinline", "true");
+            video.poster = poster;
+            video.src = videoSrc;
+
+            video.addEventListener("error", () => {
+              if (video) {
+                video.remove();
+                video = null;
+              }
+              playBtn.textContent = "Gorsel";
+            });
+
+            media.appendChild(video);
           }
-          const meta = document.createElement("div");
-          meta.className = "meta";
+
+          playBtn.addEventListener("click", async () => {
+            if (!video) return;
+            if (card.classList.contains("playing")) {
+              pauseAll();
+              return;
+            }
+            pauseAll();
+            card.classList.add("playing");
+            playBtn.textContent = "Duraklat";
+            try {
+              await video.play();
+            } catch (_) {
+              card.classList.remove("playing");
+              playBtn.textContent = "Oynat";
+            }
+          });
+
+          const body = document.createElement("div");
+          body.className = "body";
+
           const t = document.createElement("h2");
           t.className = "title";
-          t.textContent = item.name || "Proje";
+          t.textContent = title;
+
           const d = document.createElement("p");
           d.className = "desc";
-          d.textContent = ok ? (item.description || "") : ((item.description || "") + " (Video yakinda)");
-          meta.appendChild(t);
-          meta.appendChild(d);
+          d.textContent = desc;
+
+          body.appendChild(t);
+          body.appendChild(d);
+
           card.appendChild(media);
-          card.appendChild(meta);
-          grid.appendChild(card);
+          card.appendChild(body);
+          listEl.appendChild(card);
+          observer.observe(card);
         });
-      } catch (e) {
-        status.textContent = "Projeler yuklenemedi.";
+      } catch (_) {
+        statusEl.textContent = "Projeler yuklenemedi.";
       }
     })();
   </script>
