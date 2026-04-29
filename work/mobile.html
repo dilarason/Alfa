@@ -48,6 +48,16 @@
     (async function () {
       const grid = document.getElementById("grid");
       const status = document.getElementById("status");
+      const norm = (p) => "/" + String(p || "").replace(/^\/+/, "");
+      const isValidVideo = async (url) => {
+        try {
+          const r = await fetch(url, { method: "HEAD", cache: "no-store" });
+          const ct = String(r.headers.get("content-type") || "").toLowerCase();
+          return r.ok && ct.indexOf("video/mp4") !== -1;
+        } catch (_) {
+          return false;
+        }
+      };
       try {
         const res = await fetch("/assets/cms/projects-dev.json", { cache: "no-store" });
         const list = await res.json();
@@ -58,19 +68,32 @@
           return;
         }
         status.textContent = "";
-        filtered.forEach(item => {
+        const checked = await Promise.all(filtered.map(async (item) => {
+          const videoUrl = norm(item.video.url);
+          const thumbUrl = item.video.thumbnail ? norm(item.video.thumbnail) : "";
+          const ok = await isValidVideo(videoUrl);
+          return { item, videoUrl, thumbUrl, ok };
+        }));
+
+        checked.forEach(({ item, videoUrl, thumbUrl, ok }) => {
           const card = document.createElement("article");
           card.className = "card";
-          const v = document.createElement("video");
-          v.className = "media";
-          v.controls = true;
-          v.muted = true;
-          v.playsInline = true;
-          v.setAttribute("playsinline", "true");
-          v.setAttribute("webkit-playsinline", "true");
-          v.preload = "metadata";
-          v.poster = item.video.thumbnail ? "/" + String(item.video.thumbnail).replace(/^\/+/, "") : "";
-          v.src = "/" + String(item.video.url).replace(/^\/+/, "");
+          const media = ok ? document.createElement("video") : document.createElement("img");
+          media.className = "media";
+          if (ok) {
+            media.controls = true;
+            media.muted = true;
+            media.playsInline = true;
+            media.setAttribute("playsinline", "true");
+            media.setAttribute("webkit-playsinline", "true");
+            media.preload = "metadata";
+            media.poster = thumbUrl;
+            media.src = videoUrl;
+          } else {
+            media.loading = "lazy";
+            media.alt = item.name || "Proje gorseli";
+            media.src = thumbUrl;
+          }
           const meta = document.createElement("div");
           meta.className = "meta";
           const t = document.createElement("h2");
@@ -78,10 +101,10 @@
           t.textContent = item.name || "Proje";
           const d = document.createElement("p");
           d.className = "desc";
-          d.textContent = item.description || "";
+          d.textContent = ok ? (item.description || "") : ((item.description || "") + " (Video yakinda)");
           meta.appendChild(t);
           meta.appendChild(d);
-          card.appendChild(v);
+          card.appendChild(media);
           card.appendChild(meta);
           grid.appendChild(card);
         });
