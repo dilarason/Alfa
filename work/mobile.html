@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ALFA LED - Projeler Mobil</title>
+  <title>ALFA LED - Projeler</title>
   <style>
     :root {
-      --bg0: #050b12;
-      --bg1: #0a1723;
-      --glass: rgba(10, 27, 36, 0.64);
-      --line: rgba(120, 234, 222, 0.26);
-      --text: #e8f7f4;
-      --muted: #a0b7b8;
-      --accent: #5bead8;
-      --accent2: #9be96f;
-      --radius: 18px;
+      --bg: #060d13;
+      --bg2: #0b1720;
+      --panel: #0f212b;
+      --line: rgba(124, 229, 214, 0.24);
+      --line-strong: rgba(124, 229, 214, 0.44);
+      --text: #e9f7f5;
+      --muted: #9ab3b5;
+      --accent: #79e9d5;
     }
 
     * { box-sizing: border-box; }
@@ -22,62 +21,40 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at 16% 12%, #12323d 0%, transparent 38%),
-                  radial-gradient(circle at 86% 4%, #253b22 0%, transparent 34%),
-                  linear-gradient(170deg, var(--bg1), var(--bg0));
-      color: var(--text);
       min-height: 100%;
+      background: radial-gradient(circle at 14% 8%, #12313b 0%, transparent 40%),
+                  linear-gradient(160deg, var(--bg2), var(--bg));
+      color: var(--text);
       font-family: "NB Architekt Std", "Segoe UI", Arial, sans-serif;
     }
 
-    .bg-orb {
-      position: fixed;
-      width: 46vmax;
-      height: 46vmax;
-      border-radius: 50%;
-      filter: blur(52px);
-      opacity: 0.23;
-      pointer-events: none;
-      z-index: 0;
-      animation: drift 12s ease-in-out infinite alternate;
-    }
-
-    .orb-a { background: #2de2c5; top: -12vmax; left: -12vmax; }
-    .orb-b { background: #86d84f; right: -12vmax; bottom: 12vmax; animation-delay: 1.4s; }
-
-    @keyframes drift {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to { transform: translate3d(2vmax, -2vmax, 0) scale(1.08); }
-    }
-
     .shell {
-      position: relative;
-      z-index: 2;
-      width: min(980px, 100%);
+      width: min(760px, 100%);
       margin: 0 auto;
-      padding: 14px 12px calc(env(safe-area-inset-bottom) + 20px);
+      padding: 12px 12px calc(env(safe-area-inset-bottom) + 16px);
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 20;
-      margin: 4px 0 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(4, 13, 19, 0.76);
-      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 12px;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: rgba(5, 13, 19, 0.82);
+      backdrop-filter: blur(8px);
+      margin: 4px 0 12px;
     }
 
     .brand {
       font-size: 12px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #d9faf4;
+      color: #d7f8f2;
     }
 
     .home {
@@ -86,221 +63,328 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       font-size: 11px;
-      padding: 6px 11px;
-      background: rgba(91, 234, 216, 0.09);
-    }
-
-    .hero {
-      margin: 8px 2px 14px;
-    }
-
-    .kicker {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #97cbc4;
-      margin-bottom: 7px;
+      padding: 6px 10px;
+      background: rgba(121, 233, 213, 0.08);
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(24px, 8.1vw, 34px);
+      margin: 0 0 6px;
+      font-size: clamp(24px, 8vw, 34px);
       line-height: 1.08;
-      letter-spacing: 0.01em;
-      max-width: 18ch;
     }
 
     .sub {
-      margin: 9px 0 0;
+      margin: 0 0 14px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.52;
-      max-width: 36ch;
+      line-height: 1.45;
+      max-width: 38ch;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 12px;
+      padding: 10px 2px;
     }
 
     .list {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 13px;
+      gap: 10px;
     }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(160deg, rgba(9, 24, 33, 0.9), var(--glass));
-      backdrop-filter: blur(10px);
-      overflow: hidden;
-      transform: translate3d(0, 24px, 0) scale(0.985);
-      opacity: 0;
-      transition: transform 560ms cubic-bezier(.2,.8,.2,1), opacity 560ms ease, border-color 280ms ease;
-    }
-
-    .card.in {
-      transform: translate3d(0, 0, 0) scale(1);
-      opacity: 1;
-    }
-
-    .card.playing {
-      border-color: rgba(155, 233, 111, 0.65);
-    }
-
-    .media-wrap {
+    .panel {
       position: relative;
-      aspect-ratio: 16 / 9;
-      background: #071018;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(14, 33, 43, 0.96), rgba(7, 18, 24, 0.96));
       overflow: hidden;
-    }
-
-    .media-img,
-    .media-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .media-video {
+      cursor: pointer;
+      transform: translateY(16px);
       opacity: 0;
-      pointer-events: none;
-      transition: opacity 260ms ease;
-      background: #040a0f;
+      transition: transform 420ms ease, opacity 420ms ease, border-color 220ms ease;
     }
 
-    .card.playing .media-video {
+    .panel.in {
       opacity: 1;
-      pointer-events: auto;
+      transform: translateY(0);
     }
 
-    .shine {
+    .panel:active {
+      border-color: var(--line-strong);
+    }
+
+    .panel-media {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      display: block;
+      background: #08131a;
+      filter: contrast(1.08) saturate(1.08) brightness(1.03);
+    }
+
+    .scanline {
       position: absolute;
-      inset: -120% -30%;
-      background: linear-gradient(120deg, transparent 46%, rgba(255,255,255,0.2) 50%, transparent 54%);
-      animation: sweep 4.8s ease-in-out infinite;
+      left: 0;
+      right: 0;
+      top: -40%;
+      height: 35%;
+      background: linear-gradient(180deg, rgba(121,233,213,0.02), rgba(121,233,213,0.18), rgba(121,233,213,0.02));
+      animation: scan 3.8s linear infinite;
       pointer-events: none;
     }
 
-    @keyframes sweep {
-      from { transform: translateX(-58%); }
-      to { transform: translateX(58%); }
+    @keyframes scan {
+      to { transform: translateY(320%); }
     }
 
-    .badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
+    .panel-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 11px;
+      border-top: 1px solid rgba(124, 229, 214, 0.15);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .panel-open {
       font-size: 10px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: rgba(4, 12, 17, 0.72);
-      border: 1px solid rgba(120, 234, 222, 0.35);
-      color: #c7f8f0;
+      color: #ccfaf2;
+      border: 1px solid rgba(124, 229, 214, 0.35);
       border-radius: 999px;
-      padding: 6px 9px;
-      z-index: 4;
+      padding: 5px 8px;
+      white-space: nowrap;
     }
 
-    .play-btn {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.36);
-      border-radius: 999px;
-      background: rgba(2, 9, 14, 0.7);
-      color: #effffe;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 8px 11px;
-      z-index: 5;
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 8, 12, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
     }
 
-    .body {
-      padding: 11px 12px 13px;
+    .modal.show {
+      display: flex;
     }
 
-    .title {
+    .sheet {
+      width: 100%;
+      max-height: 92vh;
+      border-radius: 18px 18px 0 0;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #0c1d27, #071219);
+      overflow: auto;
+      padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+      transform: translateY(100%);
+      transition: transform 260ms ease;
+    }
+
+    .modal.show .sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px;
+      border-bottom: 1px solid rgba(124, 229, 214, 0.18);
+      background: rgba(8, 19, 26, 0.9);
+      backdrop-filter: blur(8px);
+    }
+
+    .sheet-title {
       margin: 0;
       font-size: 16px;
       line-height: 1.3;
-      color: #f2fffd;
+      flex: 1;
     }
 
-    .desc {
-      margin: 6px 0 0;
+    .close {
+      border: 1px solid var(--line);
+      background: rgba(121, 233, 213, 0.08);
+      color: var(--text);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 6px 10px;
+    }
+
+    .sheet-media-wrap {
+      padding: 10px 12px 0;
+    }
+
+    .sheet-media {
+      width: 100%;
+      max-height: 54vh;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 229, 214, 0.2);
+      background: #060f16;
+      object-fit: cover;
+    }
+
+    .sheet-body {
+      padding: 12px;
+    }
+
+    .sheet-desc {
+      margin: 0;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-line;
     }
 
-    .status {
-      color: #9dc5c2;
-      font-size: 12px;
-      padding: 10px 2px;
-    }
-
-    @media (min-width: 700px) {
-      .list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sheet-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(121, 233, 213, 0.08);
     }
   </style>
 </head>
 <body>
-  <div class="bg-orb orb-a"></div>
-  <div class="bg-orb orb-b"></div>
-
   <main class="shell">
     <header class="topbar">
       <div class="brand">ALFA LED</div>
       <a class="home" href="/">Anasayfa</a>
     </header>
 
-    <section class="hero">
-      <div class="kicker">Mobile Showcase</div>
-      <h1>Animasyonlu proje kartlari</h1>
-      <p class="sub">Kartlara dokunup videoyu acabilirsin. Video olmayanlarda proje gorseli ve aciklama gosterilir.</p>
-    </section>
+    <h1>Projeler</h1>
+    <p class="sub">LED paneller alt alta listelenir. Kartlara dokununca proje detayi acilir.</p>
 
     <div id="status" class="status">Projeler yukleniyor...</div>
     <section id="list" class="list" aria-live="polite"></section>
   </main>
 
+  <div id="modal" class="modal" aria-hidden="true">
+    <section class="sheet" role="dialog" aria-modal="true" aria-label="Proje Detayi">
+      <header class="sheet-head">
+        <h2 id="m-title" class="sheet-title"></h2>
+        <button id="m-close" class="close" type="button">Kapat</button>
+      </header>
+      <div class="sheet-media-wrap" id="m-media-wrap"></div>
+      <div class="sheet-body">
+        <p id="m-desc" class="sheet-desc"></p>
+        <a id="m-link" class="sheet-link" href="#" target="_blank" rel="noopener" style="display:none">Projeyi Ac</a>
+      </div>
+    </section>
+  </div>
+
   <script>
     (async function () {
-      const listEl = document.getElementById("list");
       const statusEl = document.getElementById("status");
+      const listEl = document.getElementById("list");
 
-      const normalize = (p) => "/" + String(p || "").replace(/^\/+/, "");
-      const pauseAll = () => {
-        document.querySelectorAll(".card.playing").forEach((card) => {
-          card.classList.remove("playing");
-          const v = card.querySelector("video");
-          if (v) {
-            try { v.pause(); } catch (_) {}
-          }
-          const btn = card.querySelector(".play-btn");
-          if (btn) btn.textContent = "Oynat";
-        });
-      };
+      const modal = document.getElementById("modal");
+      const mTitle = document.getElementById("m-title");
+      const mDesc = document.getElementById("m-desc");
+      const mMediaWrap = document.getElementById("m-media-wrap");
+      const mClose = document.getElementById("m-close");
+      const mLink = document.getElementById("m-link");
 
-      const observer = new IntersectionObserver((entries) => {
+      const norm = (p) => "/" + String(p || "").replace(/^\/+/, "");
+
+      const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("in");
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.16 });
+      }, { threshold: 0.12 });
+
+      const closeModal = () => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        const v = mMediaWrap.querySelector("video");
+        if (v) {
+          try { v.pause(); } catch (_) {}
+        }
+        setTimeout(() => { mMediaWrap.innerHTML = ""; }, 260);
+      };
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+      mClose.addEventListener("click", closeModal);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("show")) closeModal();
+      });
+
+      const openModal = (item) => {
+        mTitle.textContent = item.name || "Proje";
+        mDesc.textContent = item.description || "";
+        mMediaWrap.innerHTML = "";
+
+        const poster = norm((item.video && item.video.thumbnail) || "assets/meta/social.jpg");
+        const videoSrc = item.video && item.video.url ? norm(item.video.url) : "";
+
+        if (videoSrc) {
+          const v = document.createElement("video");
+          v.className = "sheet-media";
+          v.controls = true;
+          v.playsInline = true;
+          v.setAttribute("playsinline", "true");
+          v.setAttribute("webkit-playsinline", "true");
+          v.preload = "metadata";
+          v.poster = poster;
+          v.src = videoSrc;
+          v.addEventListener("error", () => {
+            const img = document.createElement("img");
+            img.className = "sheet-media";
+            img.alt = item.name || "Proje";
+            img.src = poster;
+            mMediaWrap.innerHTML = "";
+            mMediaWrap.appendChild(img);
+          });
+          mMediaWrap.appendChild(v);
+        } else {
+          const img = document.createElement("img");
+          img.className = "sheet-media";
+          img.alt = item.name || "Proje";
+          img.src = poster;
+          mMediaWrap.appendChild(img);
+        }
+
+        if (item.projectURL) {
+          mLink.style.display = "inline-block";
+          mLink.href = item.projectURL;
+        } else {
+          mLink.style.display = "none";
+        }
+
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+      };
 
       try {
         const res = await fetch("/assets/cms/projects-dev.json", { cache: "no-store" });
-        const raw = await res.json();
-        const items = (Array.isArray(raw) ? raw : [])
+        const data = await res.json();
+        const items = (Array.isArray(data) ? data : [])
           .filter((x) => x && x.video && (x.video.thumbnail || x.video.url))
-          .slice(0, 18);
+          .slice(0, 22);
 
         if (!items.length) {
           statusEl.textContent = "Proje bulunamadi.";
@@ -310,108 +394,44 @@
         statusEl.textContent = "";
 
         items.forEach((item, idx) => {
-          const title = item.name || "Proje";
-          const desc = item.description || "";
-          const poster = normalize(item.video.thumbnail || "assets/meta/social.jpg");
-          const videoSrc = item.video.url ? normalize(item.video.url) : "";
+          const panel = document.createElement("article");
+          panel.className = "panel";
+          panel.style.transitionDelay = Math.min(idx * 35, 300) + "ms";
 
-          const card = document.createElement("article");
-          card.className = "card";
-          card.style.transitionDelay = Math.min(idx * 45, 360) + "ms";
-
-          const media = document.createElement("div");
-          media.className = "media-wrap";
-
-          const img = document.createElement("img");
-          img.className = "media-img";
-          img.loading = "lazy";
-          img.alt = title;
-          img.src = poster;
-          img.addEventListener("error", () => {
-            if (img.dataset.fallbackTried === "1") {
-              img.style.opacity = "0.18";
-              return;
-            }
-            img.dataset.fallbackTried = "1";
-            img.src = "/assets/meta/social.jpg";
+          const media = document.createElement("img");
+          media.className = "panel-media";
+          media.loading = "lazy";
+          media.alt = item.name || "Proje";
+          media.src = norm((item.video && item.video.thumbnail) || "assets/meta/social.jpg");
+          media.addEventListener("error", () => {
+            media.src = "/assets/meta/social.jpg";
           });
 
-          const shine = document.createElement("div");
-          shine.className = "shine";
-
-          const badge = document.createElement("div");
-          badge.className = "badge";
-          badge.textContent = "Proje";
-
-          const playBtn = document.createElement("button");
-          playBtn.className = "play-btn";
-          playBtn.type = "button";
-          playBtn.textContent = videoSrc ? "Oynat" : "Gorsel";
-
-          media.appendChild(img);
-          media.appendChild(shine);
-          media.appendChild(badge);
-          media.appendChild(playBtn);
-
-          let video = null;
-          if (videoSrc) {
-            video = document.createElement("video");
-            video.className = "media-video";
-            video.preload = "metadata";
-            video.playsInline = true;
-            video.muted = true;
-            video.loop = true;
-            video.setAttribute("playsinline", "true");
-            video.setAttribute("webkit-playsinline", "true");
-            video.poster = poster;
-            video.src = videoSrc;
-
-            video.addEventListener("error", () => {
-              if (video) {
-                video.remove();
-                video = null;
-              }
-              playBtn.textContent = "Gorsel";
-            });
-
-            media.appendChild(video);
-          }
-
-          playBtn.addEventListener("click", async () => {
-            if (!video) return;
-            if (card.classList.contains("playing")) {
-              pauseAll();
-              return;
-            }
-            pauseAll();
-            card.classList.add("playing");
-            playBtn.textContent = "Duraklat";
-            try {
-              await video.play();
-            } catch (_) {
-              card.classList.remove("playing");
-              playBtn.textContent = "Oynat";
-            }
-          });
+          const scan = document.createElement("div");
+          scan.className = "scanline";
 
           const body = document.createElement("div");
-          body.className = "body";
+          body.className = "panel-body";
 
-          const t = document.createElement("h2");
-          t.className = "title";
-          t.textContent = title;
+          const title = document.createElement("h3");
+          title.className = "panel-title";
+          title.textContent = item.name || "Proje";
 
-          const d = document.createElement("p");
-          d.className = "desc";
-          d.textContent = desc;
+          const open = document.createElement("span");
+          open.className = "panel-open";
+          open.textContent = "Ac";
 
-          body.appendChild(t);
-          body.appendChild(d);
+          body.appendChild(title);
+          body.appendChild(open);
 
-          card.appendChild(media);
-          card.appendChild(body);
-          listEl.appendChild(card);
-          observer.observe(card);
+          panel.appendChild(media);
+          panel.appendChild(scan);
+          panel.appendChild(body);
+
+          panel.addEventListener("click", () => openModal(item));
+
+          listEl.appendChild(panel);
+          revealObserver.observe(panel);
         });
       } catch (_) {
         statusEl.textContent = "Projeler yuklenemedi.";
